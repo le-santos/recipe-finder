@@ -6,3 +6,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+:root {
+  --color1: #fdfdfd;
+	--color2: #e0e0e0;
+	--color3: #f3d57b;
+	--color4: #cc5e3c;
+  --color5: #403268;
+  background-color: var(--color2);
+}

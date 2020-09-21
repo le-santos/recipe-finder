@@ -1,10 +1,16 @@
 import React from "react";
-import Header from "./Components/Header";
+import AppHeader from "./Components/AppHeader";
+import SearchBox from "./Components/SearchBox";
+import BackGroundHome from "./Components/BackgroundHome";
+import ResultBox from "./Components/ResultBox";
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <AppHeader />
+      <SearchBox />
+      <BackGroundHome />
+      <ResultBox />
     </div>
   );
 }
