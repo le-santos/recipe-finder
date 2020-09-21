@@ -19,24 +19,25 @@ const sadIcon = (
 );
 
 function ResultBody(props) {
-  const results = props.recipeList ? (
-    props.recipeList.map((item, index) => {
-      return (
-        <RecipeListCard
-          key={index}
-          src={item.src}
-          alt={item.alt}
-          recipeName={item.title}
-          selectCard={props.cardSelected}
-        />
-      );
-    })
-  ) : (
-    <div style={{ margin: "1em", textAlign: "center" }}>
-      <h2>Sorry, there's no recipe </h2>
-      {sadIcon}
-    </div>
-  );
+  const results =
+    props.recipeList.length > 0 ? (
+      props.recipeList.map((item, index) => {
+        return (
+          <RecipeListCard
+            key={item.idMeal}
+            src={item.strMealThumb}
+            alt={`${item.strMeal}-recipe-photo`}
+            recipeName={item.strMeal}
+            selectCard={props.cardSelected}
+          />
+        );
+      })
+    ) : (
+      <div style={{ margin: "1em", textAlign: "center" }}>
+        <h2>Sorry, there's no recipe </h2>
+        {sadIcon}
+      </div>
+    );
 
   return <DivResultList>{results}</DivResultList>;
 }

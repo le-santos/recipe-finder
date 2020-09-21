@@ -15,7 +15,10 @@ function ResultBox(props) {
   return (
     <DivStyled>
       <ResultHeader />
-      <ResultBody recipeList={props.recipeList} />
+      <ResultBody
+        recipeList={props.recipeList}
+        cardSelected={props.cardSelected}
+      />
     </DivStyled>
   );
 }

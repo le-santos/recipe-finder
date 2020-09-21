@@ -22,7 +22,11 @@ const DivSearch = styled.div`
 function SearchBox(props) {
   return (
     <DivSearch>
-      <Input text={"Search by main ingredient"} />
+      <Input
+        text={"Search by main ingredient"}
+        value={props.value}
+        changed={props.changed}
+      />
       <span>
         <Button
           type={"button"}
