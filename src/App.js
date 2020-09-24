@@ -7,9 +7,8 @@ import ResultBox from "./Components/ResultBox";
 function App() {
   const [searchValue, setSearchValue] = useState("");
   const [recipeList, setRecipeList] = useState([]);
-  const [cardSelected, selectCard] = useState([
-    { key: "", name: "", thumbnail: "" },
-  ]);
+  const [resultVisible, toggleResultView] = useState(false);
+  const [cardSelected, selectCard] = useState();
   const [recipeInfo, setRecipeInfo] = useState();
 
   const handleInput = (e) => {
@@ -17,25 +16,64 @@ function App() {
     setSearchValue(value);
   };
 
-  const searchRecipes = () => {
-    if (searchValue === "") {
+  const getRecipes = async (e) => {
+    const requestType = e.target.id;
+
+    if (searchValue === "" && requestType === "search") {
       return;
     }
 
+    const url =
+      requestType === "search"
+        ? `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchValue}`
+        : `https://www.themealdb.com/api/json/v1/1/random.php`;
+
     let list = [];
-    console.log("hello");
-    setRecipeList(list);
+
+    await fetch(url)
+      .then((resp) => resp.json())
+      .then((data) => {
+        list = [
+          ...data.meals.map((item) => {
+            return {
+              key: item.idMeal,
+              name: item.strMeal,
+              thumbnail: item.strMealThumb,
+            };
+          }),
+        ];
+      })
+      .catch((error) => console.log(error));
+    console.log(list);
+
+    setRecipeList([...list]);
+    toggleResultView(true);
+    selectCard([]);
+    setSearchValue("");
   };
 
-  const getRandomRecipes = () => {
-    let list = [];
-    console.log("hello");
-    setRecipeList(list);
+  const closeResult = () => {
+    toggleResultView(false);
+    setSearchValue("");
+    setRecipeList([]);
+    selectCard([]);
   };
 
   const pickRecipe = (e) => {
-    const recipeCardKey = e.target.parent.key;
+    const recipeCardKey = e.target.parentNode.id;
+    console.log(recipeCardKey);
+
+    const selected = recipeList.filter((item) => item.key === recipeCardKey);
+    selectCard(selected);
   };
+
+  const resultBoxIsOn = resultVisible && (
+    <ResultBox
+      recipeList={recipeList}
+      cardSelected={pickRecipe}
+      closeResult={closeResult}
+    />
+  );
 
   return (
     <div className="App">
@@ -43,11 +81,11 @@ function App() {
       <SearchBox
         value={searchValue}
         changed={handleInput}
-        clickSearch={searchRecipes}
-        clickRandom={getRandomRecipes}
+        clickSearch={getRecipes}
+        clickRandom={getRecipes}
       />
       <BackGroundHome />
-      <ResultBox recipeList={recipeList} cardSelected={pickRecipe} />
+      {resultBoxIsOn}
     </div>
   );
 }

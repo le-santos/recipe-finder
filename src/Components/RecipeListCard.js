@@ -13,7 +13,7 @@ const DivCard = styled.div`
 
 function RecipeListCard(props) {
   return (
-    <DivCard key={props.key}>
+    <DivCard id={props.id}>
       <img src={props.src} alt={props.alt} width={"200px"} height={"auto"} />
       <h3>{props.recipeName}</h3>
       <Button

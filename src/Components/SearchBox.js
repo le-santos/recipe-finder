@@ -5,6 +5,7 @@ import Button from "./Button";
 
 const DivSearch = styled.div`
   padding: 0.7em;
+  margin-top: 56px;
   background-color: var(--color2);
   text-align: center;
   font-size: 1.2em;
@@ -31,7 +32,7 @@ function SearchBox(props) {
         <Button
           type={"button"}
           name={"Search"}
-          id={"search-btn"}
+          id={"search"}
           color={"var(--color4)"}
           hoverColor={"var(--color2)"}
           clicked={props.clickSearch}
@@ -39,7 +40,7 @@ function SearchBox(props) {
         <Button
           type={"button"}
           name={"Give me Ideas!"}
-          id={"random-btn"}
+          id={"random"}
           color={"var(--color4)"}
           hoverColor={"var(--color2)"}
           clicked={props.clickRandom}

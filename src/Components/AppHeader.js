@@ -10,9 +10,16 @@ const UtensilsIcon = (
   <FontAwesomeIcon icon={faUtensils} color={"#fdfdfd"} size={"2x"} />
 );
 
+const style = {
+  position: "fixed",
+  top: "0",
+  width: "100%",
+  zIndex: "100",
+};
+
 function AppHeader(props) {
   return (
-    <Header>
+    <Header customStyle={style}>
       {BarsIcon}
       <h1>Recipe Finder App</h1>
       {UtensilsIcon}
