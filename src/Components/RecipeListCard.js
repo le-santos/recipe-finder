@@ -19,6 +19,7 @@ function RecipeListCard(props) {
       <Button
         type={"button"}
         name={"Recipe Details"}
+        id={"details"}
         clicked={props.selectCard}
         color={"var(--color5)"}
         hoverColor={"var(--color2)"}

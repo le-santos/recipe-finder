@@ -8,7 +8,7 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [recipeList, setRecipeList] = useState([]);
   const [resultVisible, toggleResultView] = useState(false);
-  const [cardSelected, selectCard] = useState();
+  const [cardSelected, selectCard] = useState([{ name: "" }]);
   const [recipeInfo, setRecipeInfo] = useState();
 
   const handleInput = (e) => {
@@ -16,21 +16,23 @@ function App() {
     setSearchValue(value);
   };
 
-  const getRecipes = async (e) => {
-    const requestType = e.target.id;
-
+  const getRecipes = async (requestType) => {
     if (searchValue === "" && requestType === "search") {
       return;
     }
 
-    const url =
-      requestType === "search"
-        ? `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchValue}`
-        : `https://www.themealdb.com/api/json/v1/1/random.php`;
-
     let list = [];
+    const urlBase = "https://www.themealdb.com/api/json/v1/1/";
 
-    await fetch(url)
+    const apiMethod = {
+      search: `filter.php?i=${searchValue}`,
+      random: "random.php",
+      name: `search.php?s=${cardSelected[0].name}`,
+    };
+
+    console.log(urlBase + apiMethod[requestType]);
+
+    await fetch(urlBase + apiMethod[requestType])
       .then((resp) => resp.json())
       .then((data) => {
         list = [
@@ -48,7 +50,6 @@ function App() {
 
     setRecipeList([...list]);
     toggleResultView(true);
-    selectCard([]);
     setSearchValue("");
   };
 
@@ -56,7 +57,7 @@ function App() {
     toggleResultView(false);
     setSearchValue("");
     setRecipeList([]);
-    selectCard([]);
+    selectCard([{ name: "" }]);
   };
 
   const pickRecipe = (e) => {
@@ -65,6 +66,7 @@ function App() {
 
     const selected = recipeList.filter((item) => item.key === recipeCardKey);
     selectCard(selected);
+    getRecipes("name");
   };
 
   const resultBoxIsOn = resultVisible && (
@@ -81,8 +83,8 @@ function App() {
       <SearchBox
         value={searchValue}
         changed={handleInput}
-        clickSearch={getRecipes}
-        clickRandom={getRecipes}
+        clickSearch={() => getRecipes("search")}
+        clickRandom={() => getRecipes("random")}
       />
       <BackGroundHome />
       {resultBoxIsOn}
