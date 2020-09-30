@@ -1,36 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import AppHeader from "./Components/AppHeader";
 import SearchBox from "./Components/SearchBox";
 import BackGroundHome from "./Components/BackgroundHome";
 import ResultBox from "./Components/ResultBox";
+import Backdrop from "./Components/Backdrop";
+import RecipeCardSelected from "./Components/RecipeCardSelected";
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
-  const [recipeList, setRecipeList] = useState([]);
   const [resultVisible, toggleResultView] = useState(false);
-  const [cardSelected, selectCard] = useState([{ name: "" }]);
-  const [recipeInfo, setRecipeInfo] = useState();
+  const [recipeList, setRecipeList] = useState([]);
+  const [cardSelected, selectCard] = useState([{ key: null }]);
 
   const handleInput = (e) => {
     let value = e.target.value;
     setSearchValue(value);
   };
 
-  const getRecipes = async (requestType) => {
-    if (searchValue === "" && requestType === "search") {
+  const getRecipes = async (requestType, id) => {
+    if (
+      (searchValue === "" || searchValue === " ") &&
+      requestType === "search"
+    ) {
       return;
     }
 
     let list = [];
     const urlBase = "https://www.themealdb.com/api/json/v1/1/";
-
     const apiMethod = {
       search: `filter.php?i=${searchValue}`,
       random: "random.php",
-      name: `search.php?s=${cardSelected[0].name}`,
+      byId: `lookup.php?i=${id}`,
     };
-
-    console.log(urlBase + apiMethod[requestType]);
 
     await fetch(urlBase + apiMethod[requestType])
       .then((resp) => resp.json())
@@ -41,6 +42,7 @@ function App() {
               key: item.idMeal,
               name: item.strMeal,
               thumbnail: item.strMealThumb,
+              instructions: item.strInstructions,
             };
           }),
         ];
@@ -48,25 +50,29 @@ function App() {
       .catch((error) => console.log(error));
     console.log(list);
 
-    setRecipeList([...list]);
-    toggleResultView(true);
-    setSearchValue("");
+    if (requestType === "byId") {
+      selectCard([...list]);
+    } else {
+      setRecipeList([...list]);
+      toggleResultView(true);
+      setSearchValue("");
+    }
   };
 
   const closeResult = () => {
     toggleResultView(false);
     setSearchValue("");
     setRecipeList([]);
-    selectCard([{ name: "" }]);
+    selectCard([{ key: null }]);
+  };
+
+  const closeSelected = () => {
+    selectCard([{ key: null }]);
   };
 
   const pickRecipe = (e) => {
     const recipeCardKey = e.target.parentNode.id;
-    console.log(recipeCardKey);
-
-    const selected = recipeList.filter((item) => item.key === recipeCardKey);
-    selectCard(selected);
-    getRecipes("name");
+    getRecipes("byId", recipeCardKey);
   };
 
   const resultBoxIsOn = resultVisible && (
@@ -76,6 +82,18 @@ function App() {
       closeResult={closeResult}
     />
   );
+
+  const isCardSelected =
+    cardSelected[0].key === null ? null : (
+      <Fragment>
+        <Backdrop clicked={closeSelected} />
+        <RecipeCardSelected
+          recipeName={cardSelected[0].name}
+          recipeInstructions={cardSelected[0].instructions}
+          src={cardSelected[0].thumbnail}
+        />
+      </Fragment>
+    );
 
   return (
     <div className="App">
@@ -88,6 +106,7 @@ function App() {
       />
       <BackGroundHome />
       {resultBoxIsOn}
+      {isCardSelected}
     </div>
   );
 }
