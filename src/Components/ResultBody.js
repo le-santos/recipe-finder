@@ -23,11 +23,11 @@ function ResultBody(props) {
     props.recipeList.length > 0 ? (
       props.recipeList.map((item) => (
         <RecipeListCard
-          key={item.key}
-          id={item.key}
-          src={item.thumbnail}
-          alt={`${item.name}-recipe-photo`}
-          recipeName={item.name}
+          key={item.idMeal}
+          id={item.idMeal}
+          src={item.strMealThumb}
+          alt={`${item.strMeal}-recipe-photo`}
+          recipeName={item.strMeal}
           selectCard={props.cardSelected}
         />
       ))

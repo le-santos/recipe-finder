@@ -25,9 +25,14 @@ const CardStyled = styled.div`
 function RecipeCardSelected(props) {
   return (
     <CardStyled>
-      <img src={props.src} alt={props.alt} width={"50%"} height={"auto"} />
-      <h3>{props.recipeName}</h3>
-      <p>{props.recipeInstructions}</p>
+      <img
+        src={props.cardSelected.strMealThumb}
+        alt={`${props.cardSelected.strMeal}-recipe`}
+        width={"50%"}
+        height={"auto"}
+      />
+      <h3>{props.cardSelected.strMeal}</h3>
+      <p>{props.cardSelected.strInstructions}</p>
     </CardStyled>
   );
 }

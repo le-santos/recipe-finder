@@ -25,7 +25,6 @@ function App() {
       return;
     }
 
-    let list = [];
     const urlBase = "https://www.themealdb.com/api/json/v1/1/";
     const apiMethod = {
       search: `filter.php?i=${searchValue}`,
@@ -36,27 +35,16 @@ function App() {
     await fetch(urlBase + apiMethod[requestType])
       .then((resp) => resp.json())
       .then((data) => {
-        list = [
-          ...data.meals.map((item) => {
-            return {
-              key: item.idMeal,
-              name: item.strMeal,
-              thumbnail: item.strMealThumb,
-              instructions: item.strInstructions,
-            };
-          }),
-        ];
+        console.log(data);
+        if (requestType === "byId") {
+          selectCard([...data.meals]);
+        } else {
+          setRecipeList([...data.meals]);
+          toggleResultView(true);
+          setSearchValue("");
+        }
       })
       .catch((error) => console.log(error));
-    console.log(list);
-
-    if (requestType === "byId") {
-      selectCard([...list]);
-    } else {
-      setRecipeList([...list]);
-      toggleResultView(true);
-      setSearchValue("");
-    }
   };
 
   const closeResult = () => {
@@ -87,11 +75,7 @@ function App() {
     cardSelected[0].key === null ? null : (
       <Fragment>
         <Backdrop clicked={closeSelected} />
-        <RecipeCardSelected
-          recipeName={cardSelected[0].name}
-          recipeInstructions={cardSelected[0].instructions}
-          src={cardSelected[0].thumbnail}
-        />
+        <RecipeCardSelected cardSelected={cardSelected[0]} />
       </Fragment>
     );
 
