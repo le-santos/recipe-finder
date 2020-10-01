@@ -3,9 +3,13 @@ import styled from "styled-components";
 
 const TableStyled = styled.table`
   display: block;
+  border-collapse: collapse;
+  padding: 8px;
   text-align: center;
-  & th {
-    color: blue;
+  & td,
+  th {
+    border: 2px solid var(--color1);
+    padding: 10px;
   }
 `;
 
@@ -29,13 +33,13 @@ function IngredientsTable(props) {
 
   return (
     <TableStyled>
-      <tbody>
+      <thead>
         <tr key={"ingredients-table-head"}>
           <th>{"Ingredient"}</th>
           <th>{"Measure"}</th>
         </tr>
-        {makeTable(ingredients, ingredientsMeasures)}
-      </tbody>
+      </thead>
+      <tbody>{makeTable(ingredients, ingredientsMeasures)}</tbody>
     </TableStyled>
   );
 }
