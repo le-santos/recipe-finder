@@ -2,7 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const CardStyled = styled.div`
-  display: block;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
   position: fixed;
   height: 75%;
   overflow: auto;
