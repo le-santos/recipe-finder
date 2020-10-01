@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import IngredientsTable from "./IngredientsTable";
 
 const CardStyled = styled.div`
   display: flex;
@@ -33,6 +34,7 @@ function RecipeCardSelected(props) {
       />
       <h3>{props.cardSelected.strMeal}</h3>
       <p>{props.cardSelected.strInstructions}</p>
+      <IngredientsTable recipeSelected={props.cardSelected} />
     </CardStyled>
   );
 }
