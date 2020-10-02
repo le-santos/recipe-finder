@@ -3,10 +3,9 @@ import styled from "styled-components";
 import IngredientsTable from "./IngredientsTable";
 
 const CardStyled = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  gap: 1em;
+  justify-items: center;
   position: fixed;
   height: 75%;
   overflow: auto;
@@ -15,11 +14,10 @@ const CardStyled = styled.div`
   right: 5%;
   z-index: 20;
   margin: 1em;
-  padding: 1em;
+  padding: 2em;
   text-align: left;
   background-color: var(--color2);
   border: none;
-  border-radius: 10px;
   box-shadow: 1px 1px 4px;
 `;
 
