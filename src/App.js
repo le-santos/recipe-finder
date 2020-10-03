@@ -35,8 +35,10 @@ function App() {
     await fetch(urlBase + apiMethod[requestType])
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
-        if (requestType === "byId") {
+        if (data.meals === null || data === undefined) {
+          toggleResultView(true);
+          setSearchValue("");
+        } else if (requestType === "byId") {
           selectCard([...data.meals]);
         } else {
           setRecipeList([...data.meals]);
