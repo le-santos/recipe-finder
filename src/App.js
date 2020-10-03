@@ -1,10 +1,10 @@
 import React, { useState, Fragment } from "react";
-import AppHeader from "./Components/AppHeader";
-import SearchBox from "./Components/SearchBox";
-import BackGroundHome from "./Components/BackgroundHome";
-import ResultBox from "./Components/ResultBox";
-import Backdrop from "./Components/Backdrop";
-import RecipeCardSelected from "./Components/RecipeCardSelected";
+import AppHeader from "./Components/UI/AppHeader";
+import SearchBox from "./Components/SearchBox/SearchBox";
+import BackGroundHome from "./Components/UI/BackgroundHome";
+import ResultBox from "./Components/ResultBox/ResultBox";
+import Backdrop from "./Components/UI/Backdrop";
+import RecipeCardSelected from "./Components/SelectedRecipeCard/RecipeCardSelected";
 
 function App() {
   const [searchValue, setSearchValue] = useState("");

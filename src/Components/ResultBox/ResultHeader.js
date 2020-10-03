@@ -1,8 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
-import Header from "./Header";
-import Button from "./Button";
+import Header from "../UI/Header";
+import Button from "../UI/Button";
 
 const CloseBtn = (
   <FontAwesomeIcon icon={faWindowClose} color={"#fdfdfd"} size={"lg"} />

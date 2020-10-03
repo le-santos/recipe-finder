@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Input from "./Input";
-import Button from "./Button";
+import Button from "../UI/Button";
 
 const DivSearch = styled.div`
   padding: 0.7em;
