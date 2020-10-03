@@ -3,6 +3,8 @@ This is web applicaton made with React that search for recipes using The MealDB 
 
 It's built with learning purposes, based on [Florin Pop App Ideas](https://github.com/florinpop17/app-ideas).
 
+Check it live here: [https://recipe-finder-three.vercel.app/](https://recipe-finder-three.vercel.app/)
+
 ## Features
 - Search for recipes by typing the main ingredient (i.e. "Chicken", "Cheese")
 - Get random recipe suggestions
