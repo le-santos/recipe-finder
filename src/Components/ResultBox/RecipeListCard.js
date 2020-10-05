@@ -5,6 +5,7 @@ import Button from "../UI/Button";
 const DivCard = styled.div`
   margin: 1em;
   padding: 0.7em;
+  max-width: min-content;
   background-color: var(--color2);
   border: none;
   border-radius: 10px;
