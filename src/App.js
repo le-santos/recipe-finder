@@ -18,10 +18,8 @@ function App() {
   };
 
   const getRecipes = async (requestType, id) => {
-    if (
-      (searchValue === "" || searchValue === " ") &&
-      requestType === "search"
-    ) {
+    if (searchValue.trim() === "" && requestType === "search") {
+      setSearchValue("");
       return;
     }
 
