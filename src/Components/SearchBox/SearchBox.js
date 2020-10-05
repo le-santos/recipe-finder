@@ -24,7 +24,7 @@ function SearchBox(props) {
   return (
     <DivSearch>
       <Input
-        text={"Search by main ingredient"}
+        text={"Search by name"}
         value={props.value}
         changed={props.changed}
       />

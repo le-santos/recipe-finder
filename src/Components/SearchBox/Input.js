@@ -19,7 +19,7 @@ function Input(props) {
         value={props.value}
         id={props.id}
         type={"text"}
-        placeholder={"Type 1 ingredient"}
+        placeholder={"ex: chicken, salmon, pie "}
       ></InputTextStyled>
     </React.Fragment>
   );
