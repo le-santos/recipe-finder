@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import AppHeader from "./Components/UI/AppHeader";
 import SearchBox from "./Components/SearchBox/SearchBox";
 import BackGroundHome from "./Components/UI/BackgroundHome";
@@ -17,6 +17,16 @@ function App() {
     setSearchValue(value);
   };
 
+  useEffect(() => {
+    if (selectedCard[0].idMeal !== undefined) {
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeSelected();
+        }
+      });
+    }
+  }, [selectedCard]);
+
   const getRecipes = async (requestType, id) => {
     if (searchValue.trim() === "" && requestType === "search") {
       setSearchValue("");
@@ -30,7 +40,6 @@ function App() {
       byId: `lookup.php?i=${id}`,
     };
 
-    console.log(apiMethod);
     await fetch(urlBase + apiMethod[requestType])
       .then((resp) => resp.json())
       .then((data) => {
@@ -56,7 +65,7 @@ function App() {
     setSelectedCard([{ key: null }]);
   };
 
-  const closeSelected = () => {
+  const closeSelected = (event) => {
     setSelectedCard([{ key: null }]);
   };
 
