@@ -14,12 +14,14 @@ const TableStyled = styled.table`
 `;
 
 function IngredientsTable(props) {
+  // Filter entries with key "Ingredient" or "Measure" that has a truthy value
+  // and avoid catching blank strings values with trim()
   const ingredients = Object.entries(props.recipeSelected).filter(
-    (item) => item[0].includes("Ingredient") && item[1] !== " " && item[1]
+    (item) => item[0].includes("Ingredient") && item[1] && item[1].trim()
   );
 
   const ingredientsMeasures = Object.entries(props.recipeSelected).filter(
-    (item) => item[0].includes("Measure") && item[1] !== " " && item[1]
+    (item) => item[0].includes("Measure") && item[1] && item[1].trim()
   );
 
   const makeTable = (ingr, measure) => {
