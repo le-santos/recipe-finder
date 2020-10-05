@@ -27,7 +27,7 @@ function App() {
 
     const urlBase = "https://www.themealdb.com/api/json/v1/1/";
     const apiMethod = {
-      search: `search.php?s=${searchValue.split(" ").join("_")}`,
+      search: `search.php?s=${searchValue.replace(" ", "_")}`,
       random: "random.php",
       byId: `lookup.php?i=${id}`,
     };
