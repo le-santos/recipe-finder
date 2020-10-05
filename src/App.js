@@ -35,7 +35,8 @@ function App() {
     await fetch(urlBase + apiMethod[requestType])
       .then((resp) => resp.json())
       .then((data) => {
-        if (data.meals === null || data === undefined) {
+        if (!data.meals) {
+          setRecipeList(null);
           toggleResultView(true);
           setSearchValue("");
         } else if (requestType === "byId") {
