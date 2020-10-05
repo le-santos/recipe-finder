@@ -8,9 +8,9 @@ import RecipeCardSelected from "./Components/SelectedRecipeCard/RecipeCardSelect
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
-  const [resultVisible, toggleResultView] = useState(false);
+  const [resultVisibility, setResultVisibility] = useState(false);
   const [recipeList, setRecipeList] = useState([]);
-  const [cardSelected, selectCard] = useState([{ key: null }]);
+  const [selectedCard, setSelectedCard] = useState([{ key: null }]);
 
   const handleInput = (e) => {
     let value = e.target.value;
@@ -38,13 +38,13 @@ function App() {
       .then((data) => {
         if (!data.meals) {
           setRecipeList(null);
-          toggleResultView(true);
+          setResultVisibility(true);
           setSearchValue("");
         } else if (requestType === "byId") {
-          selectCard([...data.meals]);
+          setSelectedCard([...data.meals]);
         } else {
           setRecipeList([...data.meals]);
-          toggleResultView(true);
+          setResultVisibility(true);
           setSearchValue("");
         }
       })
@@ -52,14 +52,14 @@ function App() {
   };
 
   const closeResult = () => {
-    toggleResultView(false);
+    setResultVisibility(false);
     setSearchValue("");
     setRecipeList([]);
-    selectCard([{ key: null }]);
+    setSelectedCard([{ key: null }]);
   };
 
   const closeSelected = () => {
-    selectCard([{ key: null }]);
+    setSelectedCard([{ key: null }]);
   };
 
   const pickRecipe = (e) => {
@@ -67,7 +67,7 @@ function App() {
     getRecipes("byId", recipeCardKey);
   };
 
-  const resultBoxIsOn = resultVisible && (
+  const resultBoxIsOn = resultVisibility && (
     <ResultBox
       recipeList={recipeList}
       cardSelected={pickRecipe}
@@ -76,10 +76,10 @@ function App() {
   );
 
   const isCardSelected =
-    cardSelected[0].key === null ? null : (
+    selectedCard[0].key === null ? null : (
       <Fragment>
         <Backdrop clicked={closeSelected} />
-        <RecipeCardSelected cardSelected={cardSelected[0]} />
+        <RecipeCardSelected cardSelected={selectedCard[0]} />
       </Fragment>
     );
 
