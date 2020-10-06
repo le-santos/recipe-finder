@@ -1,30 +1,68 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState } from "react";
 import AppHeader from "./Components/UI/AppHeader";
 import SearchBox from "./Components/SearchBox/SearchBox";
 import BackGroundHome from "./Components/UI/BackgroundHome";
 import ResultBox from "./Components/ResultBox/ResultBox";
-import Backdrop from "./Components/UI/Backdrop";
-import RecipeCardSelected from "./Components/SelectedRecipeCard/SelectedRecipeCard";
 
 function App() {
+  const [inputValue, setInputValue] = useState("");
   const [searchValue, setSearchValue] = useState("");
+  const [requestType, setRequestType] = useState("");
   const [resultVisibility, setResultVisibility] = useState(false);
-  const [recipeList, setRecipeList] = useState([]);
-  const [selectedCard, setSelectedCard] = useState([{ key: null }]);
 
   const handleInput = (e) => {
     let value = e.target.value;
-    setSearchValue(value);
+    setInputValue(value);
   };
 
-  useEffect(() => {
-    if (selectedCard[0].idMeal !== undefined) {
-      window.addEventListener("keydown", closeSelected);
+  const getSearch = () => {
+    if (inputValue.trim()) {
+      setSearchValue(inputValue);
+      setResultVisibility(true);
+      setRequestType("search");
+      setInputValue("");
+    } else {
+      setInputValue("");
     }
-    return () => {
-      window.removeEventListener("keydown", closeSelected); // clean up function in useEffect
-    };
-  }, [selectedCard]);
+  };
+
+  const getRandom = () => {
+    setResultVisibility(true);
+    setRequestType("random");
+    setInputValue("");
+  };
+
+  const closeResult = () => {
+    setResultVisibility(false);
+    setSearchValue("");
+  };
+
+  const resultBoxIsOn = resultVisibility && (
+    <ResultBox
+      searchText={searchValue}
+      apiRequestMethod={requestType}
+      closeBox={closeResult}
+    />
+  );
+
+  return (
+    <div className="App">
+      <AppHeader />
+      <SearchBox
+        value={inputValue}
+        changed={handleInput}
+        clickSearch={getSearch}
+        clickRandom={getRandom}
+      />
+      <BackGroundHome />
+      {resultBoxIsOn}
+    </div>
+  );
+}
+
+export default App;
+
+/*
 
   const getRecipes = async (requestType, id) => {
     if (searchValue.trim() === "" && requestType === "search") {
@@ -57,12 +95,25 @@ function App() {
       .catch((error) => console.log(error));
   };
 
-  const closeResult = () => {
+
+
+  useEffect(() => {
+    if (selectedCard[0].idMeal !== undefined) {
+      window.addEventListener("keydown", closeSelected);
+    }
+    return () => {
+      window.removeEventListener("keydown", closeSelected); // clean up function in useEffect
+    };
+  }, [selectedCard]);
+
+
+    const closeResult = () => {
     setResultVisibility(false);
     setSearchValue("");
     setRecipeList([]);
     setSelectedCard([{ key: null }]);
   };
+
 
   const closeSelected = (event) => {
     if (
@@ -73,41 +124,11 @@ function App() {
     }
   };
 
-  const pickRecipe = (e) => {
+
+    const pickRecipe = (e) => {
     const recipeCardKey = e.target.parentNode.id;
     getRecipes("byId", recipeCardKey);
   };
 
-  const resultBoxIsOn = resultVisibility && (
-    <ResultBox
-      recipeList={recipeList}
-      cardSelected={pickRecipe}
-      closeResult={closeResult}
-    />
-  );
 
-  const isCardSelected =
-    selectedCard[0].key === null ? null : (
-      <Fragment>
-        <Backdrop clicked={closeSelected} />
-        <RecipeCardSelected cardSelected={selectedCard[0]} />
-      </Fragment>
-    );
-
-  return (
-    <div className="App">
-      <AppHeader />
-      <SearchBox
-        value={searchValue}
-        changed={handleInput}
-        clickSearch={() => getRecipes("search")}
-        clickRandom={() => getRecipes("random")}
-      />
-      <BackGroundHome />
-      {resultBoxIsOn}
-      {isCardSelected}
-    </div>
-  );
-}
-
-export default App;
+*/
