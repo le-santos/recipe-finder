@@ -65,7 +65,6 @@ function App() {
   };
 
   const closeSelected = (event) => {
-    console.log("closeSelected running");
     if (
       event.type === "click" ||
       (event.type === "keydown" && event.key === "Escape")
