@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUtensils } from "@fortawesome/free-solid-svg-icons";
-import Header from "./Header";
+import Header from "../UI/Header";
 
 const BarsIcon = (
   <FontAwesomeIcon icon={faBars} color={"#fdfdfd"} size={"2x"} />
@@ -17,7 +17,7 @@ const style = {
   zIndex: "100",
 };
 
-function AppHeader(props) {
+function AppToolbar(props) {
   return (
     <Header customStyle={style}>
       {BarsIcon}
@@ -27,4 +27,4 @@ function AppHeader(props) {
   );
 }
 
-export default AppHeader;
+export default AppToolbar;

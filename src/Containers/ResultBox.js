@@ -1,9 +1,9 @@
 import React, { useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
-import ResultHeader from "./ResultHeader";
-import ResultBody from "./ResultBody";
-import Backdrop from "../UI/Backdrop";
-import SelectedRecipeCard from "../SelectedRecipeCard/SelectedRecipeCard";
+import ResultHeader from "../Components/ResultList/ResultListHeader";
+import ResultBody from "../Components/ResultList/ResultListBody";
+import Backdrop from "../Components/UI/Backdrop";
+import SelectedRecipeCard from "../Components/SelectedRecipeCard/SelectedRecipeCard";
 
 const DivStyled = styled.div`
   margin: 0em 0.8em;
@@ -35,6 +35,7 @@ function ResultBox(props) {
     await fetch(urlBase + apiMethod[requestType])
       .then((resp) => resp.json())
       .then((data) => {
+        console.log(data);
         if (!data.meals) {
           setRecipeList(null);
         } else if (requestType === "byId") {
@@ -63,7 +64,8 @@ function ResultBox(props) {
 
   const pickRecipe = (e) => {
     const recipeCardKey = e.target.parentNode.id;
-    getRecipes("byId", recipeCardKey);
+    console.log(recipeCardKey);
+    getRecipes("", "byId", recipeCardKey);
   };
 
   useEffect(() => {
@@ -90,7 +92,7 @@ function ResultBox(props) {
   return (
     <DivStyled>
       <ResultHeader closeResult={closeResult} />
-      <ResultBody recipeList={recipeList} cardSelected={selectedCard} />
+      <ResultBody recipeList={recipeList} selectCard={pickRecipe} />
       {isCardSelected}
     </DivStyled>
   );

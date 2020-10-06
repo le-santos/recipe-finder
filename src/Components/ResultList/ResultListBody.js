@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import RecipeListCard from "./RecipeListCard";
+import RecipeListCard from "./ResultListCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSadCry } from "@fortawesome/free-solid-svg-icons";
 
@@ -27,7 +27,7 @@ function ResultBody(props) {
         src={item.strMealThumb}
         alt={`${item.strMeal}-recipe-photo`}
         recipeName={item.strMeal}
-        selectCard={props.cardSelected}
+        selectCard={props.selectCard}
       />
     ))
   ) : (
