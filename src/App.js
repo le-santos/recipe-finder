@@ -4,7 +4,7 @@ import SearchBox from "./Components/SearchBox/SearchBox";
 import BackGroundHome from "./Components/UI/BackgroundHome";
 import ResultBox from "./Components/ResultBox/ResultBox";
 import Backdrop from "./Components/UI/Backdrop";
-import RecipeCardSelected from "./Components/SelectedRecipeCard/RecipeCardSelected";
+import RecipeCardSelected from "./Components/SelectedRecipeCard/SelectedRecipeCard";
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
@@ -19,12 +19,11 @@ function App() {
 
   useEffect(() => {
     if (selectedCard[0].idMeal !== undefined) {
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          closeSelected();
-        }
-      });
+      window.addEventListener("keydown", closeSelected);
     }
+    return () => {
+      window.removeEventListener("keydown", closeSelected); // clean up function in useEffect
+    };
   }, [selectedCard]);
 
   const getRecipes = async (requestType, id) => {
@@ -66,7 +65,13 @@ function App() {
   };
 
   const closeSelected = (event) => {
-    setSelectedCard([{ key: null }]);
+    console.log("closeSelected running");
+    if (
+      event.type === "click" ||
+      (event.type === "keydown" && event.key === "Escape")
+    ) {
+      setSelectedCard([{ key: null }]);
+    }
   };
 
   const pickRecipe = (e) => {
