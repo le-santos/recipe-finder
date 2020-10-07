@@ -5,18 +5,10 @@ import BackGroundHome from "../Components/UI/BackgroundHome";
 
 function RecipeFinderMain(props) {
   const [inputValue, setInputValue] = useState("");
-  const [searchValue, setSearchValue] = useState("");
-  const [requestType, setRequestType] = useState("");
   const [resultVisibility, setResultVisibility] = useState(false);
+  const [searchInfo, setSearchInfo] = useState(["", ""]);
 
-  useEffect(() => {
-    return () => {
-      if (inputValue === "") {
-        // Clean up function
-        setRequestType("");
-      }
-    };
-  }, [inputValue]);
+  useEffect(() => {});
 
   const handleInput = (e) => {
     let value = e.target.value;
@@ -25,9 +17,8 @@ function RecipeFinderMain(props) {
 
   const getSearch = () => {
     if (inputValue.trim()) {
-      setSearchValue(inputValue);
       setResultVisibility(true);
-      setRequestType("search");
+      setSearchInfo([inputValue, "search"]);
       setInputValue("");
     } else {
       setInputValue("");
@@ -36,21 +27,23 @@ function RecipeFinderMain(props) {
 
   const getRandom = () => {
     setResultVisibility(true);
-    setRequestType("random");
-    setInputValue("");
+    setSearchInfo(["", "random"]);
+  };
+
+  const cleanUpSearch = () => {
+    setSearchInfo(["", ""]);
   };
 
   const closeResult = () => {
     setResultVisibility(false);
-    setRequestType("");
     setInputValue("");
-    setSearchValue("");
+    cleanUpSearch();
   };
 
   const resultBoxIsOn = resultVisibility && (
     <ResultBox
-      searchText={searchValue}
-      apiRequestMethod={requestType}
+      searchText={searchInfo[0]}
+      apiRequestMethod={searchInfo[1]}
       closeBox={closeResult}
     />
   );
