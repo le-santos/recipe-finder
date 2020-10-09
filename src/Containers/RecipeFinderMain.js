@@ -25,10 +25,7 @@ function RecipeFinderMain(props) {
   };
 
   const getRandom = () => {
-    // Com o state searchID, a cada vez que clicar no random, consigo enviar uma nova props ao ResultBox
-    // Como essa props it`s observed by useEffect, assim que ela muda, ele executa a getRecipes
-    // PRECISO MELHORAR ESSE METODO AQUI, talvez com nanoId ou outra estrutura.
-    setSearchId(Math.random().toString())
+    setSearchId(Math.random().toFixed(8).toString())
     setSearchInfo(["", "random"]);
     setResultVisibility(true);
   };

@@ -35,7 +35,6 @@ function ResultBox(props) {
     await fetch(urlBase + apiMethod[requestType])
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
         if (!data.meals) {
           setRecipeList(null);
         } else if (requestType === "byId") {
