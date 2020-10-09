@@ -24,7 +24,20 @@ function ResultBox(props) {
   const [recipeList, setRecipeList] = useState([]);
   const [selectedCard, setSelectedCard] = useState([{ key: null }]);
 
-  const getRecipes = async (searchQuery, requestType, recipeId) => {
+  useEffect(() => {
+    getRecipes(props.searchText, props.apiRequestMethod);
+  }, [props.apiRequestMethod, props.searchText, props.searchId]);
+
+  useEffect(() => {
+    if (selectedCard[0].idMeal !== undefined) {
+      window.addEventListener("keydown", closeSelected);
+    }
+    return () => {
+      window.removeEventListener("keydown", closeSelected); // clean up function in useEffect
+    };
+  }, [selectedCard]);
+
+  const getRecipes = (searchQuery, requestType, recipeId) => {
     const urlBase = "https://www.themealdb.com/api/json/v1/1/";
     const apiMethod = {
       search: `search.php?s=${searchQuery.replace(" ", "_")}`,
@@ -32,7 +45,7 @@ function ResultBox(props) {
       byId: `lookup.php?i=${recipeId}`,
     };
 
-    await fetch(urlBase + apiMethod[requestType])
+    fetch(urlBase + apiMethod[requestType])
       .then((resp) => resp.json())
       .then((data) => {
         if (!data.meals) {
@@ -66,19 +79,6 @@ function ResultBox(props) {
     console.log(recipeCardKey);
     getRecipes("", "byId", recipeCardKey);
   };
-
-  useEffect(() => {
-    getRecipes(props.searchText, props.apiRequestMethod);
-  }, [props.apiRequestMethod, props.searchText, props.searchId]);
-
-  useEffect(() => {
-    if (selectedCard[0].idMeal !== undefined) {
-      window.addEventListener("keydown", closeSelected);
-    }
-    return () => {
-      window.removeEventListener("keydown", closeSelected); // clean up function in useEffect
-    };
-  }, [selectedCard]);
 
   const isCardSelected =
     selectedCard[0].key === null ? null : (
