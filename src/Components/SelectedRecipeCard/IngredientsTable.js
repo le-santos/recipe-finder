@@ -8,7 +8,7 @@ const TableStyled = styled.table`
   text-align: center;
   & td,
   th {
-    border: 2px solid var(--color1);
+    border: 2px solid var(--color2);
     padding: 10px;
   }
 `;
