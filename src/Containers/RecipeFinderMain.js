@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import ResultBox from "./ResultBox";
 import SearchBox from "../Components/SearchBox/SearchBox";
 import BackGroundHome from "../Components/UI/BackgroundHome";
@@ -7,8 +7,7 @@ function RecipeFinderMain(props) {
   const [inputValue, setInputValue] = useState("");
   const [resultVisibility, setResultVisibility] = useState(false);
   const [searchInfo, setSearchInfo] = useState(["", ""]);
-
-  useEffect(() => {});
+  const [searchId, setSearchId] = useState("");
 
   const handleInput = (e) => {
     let value = e.target.value;
@@ -26,18 +25,17 @@ function RecipeFinderMain(props) {
   };
 
   const getRandom = () => {
-    setResultVisibility(true);
+    // Com o state searchID, a cada vez que clicar no random, consigo enviar uma nova props ao ResultBox
+    // Como essa props it`s observed by useEffect, assim que ela muda, ele executa a getRecipes
+    // PRECISO MELHORAR ESSE METODO AQUI, talvez com nanoId ou outra estrutura.
+    setSearchId(Math.random().toString())
     setSearchInfo(["", "random"]);
-  };
-
-  const cleanUpSearch = () => {
-    setSearchInfo(["", ""]);
+    setResultVisibility(true);
   };
 
   const closeResult = () => {
     setResultVisibility(false);
     setInputValue("");
-    cleanUpSearch();
   };
 
   const resultBoxIsOn = resultVisibility && (
@@ -45,6 +43,7 @@ function RecipeFinderMain(props) {
       searchText={searchInfo[0]}
       apiRequestMethod={searchInfo[1]}
       closeBox={closeResult}
+      searchId={searchId}
     />
   );
 

@@ -70,7 +70,7 @@ function ResultBox(props) {
 
   useEffect(() => {
     getRecipes(props.searchText, props.apiRequestMethod);
-  }, [props.apiRequestMethod, props.searchText]);
+  }, [props.apiRequestMethod, props.searchText, props.searchId]);
 
   useEffect(() => {
     if (selectedCard[0].idMeal !== undefined) {
