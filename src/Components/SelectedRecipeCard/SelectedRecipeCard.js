@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import Header from "../UI/Header";
 import SelectedRecipeContent from "./SelectedRecipeContent";
 
 const CardStyled = styled.div`
   position: fixed;
   height: 75%;
   overflow: auto;
-  top: 60px;
+  top: 120px;
   left: 5%;
   right: 5%;
   z-index: 20;
@@ -17,12 +16,19 @@ const CardStyled = styled.div`
   background-color: var(--color2);
   border: none;
   box-shadow: 1px 1px 4px;
+  transition: top 0.7s;
 `;
 
 
 function RecipeCardSelected(props) {
+  useEffect(() => { 
+    setTimeout(() => {
+      document.querySelector(".card-selected-styled").style.top = "60px";
+    }, 0)
+  })
+
   return (
-      <CardStyled>
+      <CardStyled className={"card-selected-styled"}>
         <h3>Recipe Details</h3>
         <SelectedRecipeContent 
           cardSelected={props.cardSelected}
