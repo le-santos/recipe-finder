@@ -1,12 +1,7 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import Header from "../UI/Header";
 import Button from "../UI/Button";
-
-const CloseBtn = (
-  <FontAwesomeIcon icon={faWindowClose} color={"#fdfdfd"} size={"lg"} />
-);
+import CloseIcon from "../Icons/CloseIcon";
 
 const style = {
   border: "none",
@@ -19,11 +14,12 @@ function ResultListHeader(props) {
       <p>Your results</p>
       <Button
         type={"button"}
-        name={CloseBtn}
         color={"var(--color5)"}
         hoverColor={"var(--color5)"}
         clicked={props.closeResult}
-      />
+      >
+        <CloseIcon color={"var(--color1)"} size={"lg"}/>
+      </Button>
     </Header>
   );
 }
