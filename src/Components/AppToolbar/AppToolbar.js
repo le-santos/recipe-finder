@@ -13,7 +13,7 @@ const style = {
 function AppToolbar(props) {
   return (
     <Header customStyle={style}>
-      <HamburgerIcon size={"2x"} color={"#fdfdfd"} />
+      <HamburgerIcon size={"2x"} color={"#fdfdfd"} clicked={props.toggleMenu} />
       <h1>Recipe Finder App</h1>
       <UtensilsIcon size={"2x"} color={"#fdfdfd"}/>
     </Header>
