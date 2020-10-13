@@ -34,6 +34,7 @@ function Button(props) {
       id={props.id}
     >
       {props.name}
+      {props.children}
     </BtnStyled>
   );
 }
