@@ -83,7 +83,7 @@ function ResultBox(props) {
   const isCardSelected =
     selectedCard[0].key === null ? null : (
       <Fragment>
-        <Backdrop clicked={closeSelected} />
+        <Backdrop clicked={closeSelected} isBackdropVisible={selectedCard[0]}/>
         <SelectedRecipeCard cardSelected={selectedCard[0]} />
       </Fragment>
     );

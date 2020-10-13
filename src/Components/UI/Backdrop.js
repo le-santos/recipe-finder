@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const DivBackdropStyled = styled.div`
-  display: block;
+  display: ${props => props.changeDisplay};
   position: fixed;
   top: 0;
   left: 0;
-  background-color: var(--color5);
+  background-color: var(--color0);
   opacity: 0.6;
   z-index: 10;
   height: 100%;
@@ -14,7 +14,13 @@ const DivBackdropStyled = styled.div`
 `;
 
 function Backdrop(props) {
-  return <DivBackdropStyled onClick={props.clicked} />;
+  const showBackdrop = () => {
+    return (
+      (props.isBackdropVisible) ? "block" : "none"
+    )
+  }
+
+  return <DivBackdropStyled onClick={props.clicked} changeDisplay={showBackdrop} />;
 }
 
 export default Backdrop;
