@@ -1,14 +1,7 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faUtensils } from "@fortawesome/free-solid-svg-icons";
 import Header from "../UI/Header";
-
-const BarsIcon = (
-  <FontAwesomeIcon icon={faBars} color={"#fdfdfd"} size={"2x"} />
-);
-const UtensilsIcon = (
-  <FontAwesomeIcon icon={faUtensils} color={"#fdfdfd"} size={"2x"} />
-);
+import UtensilsIcon from "../Icons/UtensilsIcon";
+import HamburgerIcon from "../Icons/HamburgerIcon"
 
 const style = {
   position: "fixed",
@@ -20,9 +13,9 @@ const style = {
 function AppToolbar(props) {
   return (
     <Header customStyle={style}>
-      {BarsIcon}
+      <HamburgerIcon size={"2x"} color={"#fdfdfd"} />
       <h1>Recipe Finder App</h1>
-      {UtensilsIcon}
+      <UtensilsIcon size={"2x"} color={"#fdfdfd"}/>
     </Header>
   );
 }
