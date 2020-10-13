@@ -13,7 +13,7 @@ const style = {
   borderRadius: "8px 8px 0 0",
 };
 
-function ResultHeader(props) {
+function ResultListHeader(props) {
   return (
     <Header customStyle={style}>
       <p>Your results</p>
@@ -28,4 +28,4 @@ function ResultHeader(props) {
   );
 }
 
-export default ResultHeader;
+export default ResultListHeader;

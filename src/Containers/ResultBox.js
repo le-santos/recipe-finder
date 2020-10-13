@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
-import ResultHeader from "../Components/ResultList/ResultListHeader";
+import ResultListHeader from "../Components/ResultList/ResultListHeader";
 import ResultBody from "../Components/ResultList/ResultListBody";
 import Backdrop from "../Components/UI/Backdrop";
 import SelectedRecipeCard from "../Components/SelectedRecipeCard/SelectedRecipeCard";
@@ -90,7 +90,7 @@ function ResultBox(props) {
 
   return (
     <DivStyled>
-      <ResultHeader closeResult={closeResult} />
+      <ResultListHeader closeResult={closeResult} />
       <ResultBody recipeList={recipeList} selectCard={pickRecipe} />
       {isCardSelected}
     </DivStyled>
