@@ -9,10 +9,23 @@ function Layout(props) {
     setSideDrawerVisible(!sideDrawerVisible);
   }
 
+  const menuItems = [
+    "Breakfast", 
+    "Pasta", 
+    "Chicken", 
+    "Beef", 
+    "Seafood", 
+    "Vegetarian", 
+    "Vegan", 
+    "Desserts", 
+    "Miscelaneous"
+  ] 
+
   return (
     <React.Fragment>
       <AppToolbar toggleMenu={toggleMenu}/>
       <SideDrawer 
+        menuList={menuItems}
         closeSideDrawer={toggleMenu} 
         isSideDrawerVisible={sideDrawerVisible} 
         isBackdropVisible={sideDrawerVisible} />

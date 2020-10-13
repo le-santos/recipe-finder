@@ -1,8 +1,9 @@
-import React from "react"
-import styled from "styled-components"
-import CloseIcon from "../Icons/CloseIcon"
-import UtensilsIcon from "../Icons/UtensilsIcon"
-import Backdrop from "../UI/Backdrop"
+import React from "react";
+import styled from "styled-components";
+import CloseIcon from "../Icons/CloseIcon";
+import UtensilsIcon from "../Icons/UtensilsIcon";
+import Backdrop from "../UI/Backdrop";
+import NavigationList from "../Navigation/NavigationList";
 
 const SideDivStyled = styled.div`
   position: fixed;
@@ -25,6 +26,7 @@ function SideDrawer(props) {
     )
   }
   
+
   return (
     <React.Fragment>
       <Backdrop clicked={props.closeSideDrawer} isBackdropVisible={props.isSideDrawerVisible}/>
@@ -33,8 +35,7 @@ function SideDrawer(props) {
         <span style={{"float": "right", "fontSize": "2em", cursor: "pointer"}}>
           <CloseIcon color={"var(--color5)"} size={"sm"} clicked={props.closeSideDrawer}/>
         </span>
-        <p>Busca 1</p>
-        <p>Busca 2</p>
+        <NavigationList menuList={props.menuList} />
       </SideDivStyled>
     </React.Fragment>
   )
