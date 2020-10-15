@@ -32,7 +32,11 @@ function SideDrawer(props) {
 
   return (
     <React.Fragment>
-      <Backdrop clicked={props.closeSideDrawer} isBackdropVisible={props.isSideDrawerVisible}/>
+      <Backdrop 
+        clicked={props.closeSideDrawer} 
+        isBackdropVisible={props.isSideDrawerVisible}
+        customZindex={"100"}
+        />
       <SideDivStyled changeLeftPosition={moveDrawer}>
         <Header customStyle={headerStyle}>
           <h3>Recipes by category</h3>

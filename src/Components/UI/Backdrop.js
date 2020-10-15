@@ -8,7 +8,7 @@ const DivBackdropStyled = styled.div`
   left: 0;
   background-color: var(--color0);
   opacity: 0.6;
-  z-index: 10;
+  z-index: ${props => props.customZindex};
   height: 100%;
   width: 100vw;
 `;
@@ -20,7 +20,13 @@ function Backdrop(props) {
     )
   }
 
-  return <DivBackdropStyled onClick={props.clicked} changeDisplay={showBackdrop} />;
+  return (
+  <DivBackdropStyled 
+    onClick={props.clicked} 
+    changeDisplay={showBackdrop}
+    customZindex={props.customZindex}
+    />
+  );
 }
 
 export default Backdrop;
