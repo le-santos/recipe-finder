@@ -2,16 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import NavigationItem from "./NavigationItem";
 
-const NavStyled = styled.a`
+const NavStyled = styled.nav`
   display: flex;
   flex-flow: column;
 `
 
 function NavigationList(props) {
 
-  const navList = props.menuList.map((item) => {
+  const navList = props.menuList.map((item, index) => {
     return (
-      <NavigationItem text={item}/>
+      <NavigationItem key={`nav-${index}`} text={item}/>
     )
   })
 
