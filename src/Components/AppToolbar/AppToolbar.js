@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../UI/Header";
 import UtensilsIcon from "../Icons/UtensilsIcon";
-import HamburgerIcon from "../Icons/HamburgerIcon"
+import HamburgerIcon from "../Icons/HamburgerIcon";
 
 const style = {
   position: "fixed",
@@ -15,7 +15,7 @@ function AppToolbar(props) {
     <Header customStyle={style}>
       <HamburgerIcon size={"2x"} color={"#fdfdfd"} clicked={props.toggleMenu} />
       <h1>Recipe Finder App</h1>
-      <UtensilsIcon size={"2x"} color={"#fdfdfd"}/>
+      <UtensilsIcon size={"2x"} color={"#fdfdfd"} />
     </Header>
   );
 }

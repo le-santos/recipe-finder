@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Layout from "../Components/Layout/Layout";
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
   };
 
   const getRandom = () => {
-    setSearchId(Math.random().toFixed(8).toString())
+    setSearchId(Math.random().toFixed(8).toString());
     setSearchInfo(["", "random"]);
     setResultVisibility(true);
   };
@@ -37,21 +37,22 @@ function App() {
     setResultVisibility(false);
     setInputValue("");
     setSearchInfo(["", ""]);
-    setSearchId("")
+    setSearchId("");
   };
 
-
   return (
-      <Layout className="App"
-        searchByCategory={getCategoryList}
-        handleInput = {handleInput}
-        inputValue = {inputValue}
-        search={getSearch}
-        randomSearch={getRandom}
-        searchInfo={searchInfo}
-        searchId={searchId}
-        resultVisible={resultVisibility}
-        closeResult={closeResult} />
+    <Layout
+      className="App"
+      searchByCategory={getCategoryList}
+      handleInput={handleInput}
+      inputValue={inputValue}
+      search={getSearch}
+      randomSearch={getRandom}
+      searchInfo={searchInfo}
+      searchId={searchId}
+      resultVisible={resultVisibility}
+      closeResult={closeResult}
+    />
   );
 }
 

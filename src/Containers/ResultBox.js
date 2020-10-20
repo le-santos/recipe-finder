@@ -43,7 +43,7 @@ function ResultBox(props) {
       search: `search.php?s=${searchQuery.replace(" ", "_")}`,
       random: "random.php",
       byId: `lookup.php?i=${recipeId}`,
-      byCategory: `filter.php?c=${searchQuery}`
+      byCategory: `filter.php?c=${searchQuery}`,
     };
 
     fetch(urlBase + apiMethod[requestType])
@@ -84,10 +84,11 @@ function ResultBox(props) {
   const isCardSelected =
     selectedCard[0].key === null ? null : (
       <Fragment>
-        <Backdrop 
-          clicked={closeSelected} 
+        <Backdrop
+          clicked={closeSelected}
           isBackdropVisible={selectedCard[0]}
-          customZindex={"10"}/>
+          customZindex={"10"}
+        />
         <SelectedRecipeCard cardSelected={selectedCard[0]} />
       </Fragment>
     );

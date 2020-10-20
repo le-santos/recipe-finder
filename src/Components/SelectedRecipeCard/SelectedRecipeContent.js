@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import IngredientsTable from "./IngredientsTable";
 
-
 const CardContentDiv = styled.div`
   display: grid;
   gap: 1em;
@@ -11,10 +10,10 @@ const CardContentDiv = styled.div`
   padding: 2em;
   margin-top: 1em;
   border-radius: 10px;
-`
+`;
 
 function SelectedRecipeContent(props) {
-  return(
+  return (
     <CardContentDiv>
       <img
         src={props.cardSelected.strMealThumb}
@@ -26,7 +25,7 @@ function SelectedRecipeContent(props) {
       <p>{props.cardSelected.strInstructions}</p>
       <IngredientsTable recipeSelected={props.cardSelected} />
     </CardContentDiv>
-  )
+  );
 }
 
 export default SelectedRecipeContent;

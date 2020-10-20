@@ -7,18 +7,12 @@ const LinkStyled = styled.a`
   &:hover {
     color: var(--color1);
     background-color: var(--color5);
-		cursor: pointer;
-	}
-`
+    cursor: pointer;
+  }
+`;
 
 function NavigationItem(props) {
-  return (
-    <LinkStyled
-      onClick={props.clicked}
-    >
-      {props.text}
-    </LinkStyled>
-  )
+  return <LinkStyled onClick={props.clicked}>{props.text}</LinkStyled>;
 }
 
 export default NavigationItem;

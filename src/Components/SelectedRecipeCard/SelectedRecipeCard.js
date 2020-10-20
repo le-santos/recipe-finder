@@ -19,21 +19,18 @@ const CardStyled = styled.div`
   transition: top 0.7s;
 `;
 
-
 function RecipeCardSelected(props) {
-  useEffect(() => { 
+  useEffect(() => {
     setTimeout(() => {
       document.querySelector(".card-selected-styled").style.top = "60px";
-    }, 0)
-  })
+    }, 0);
+  });
 
   return (
-      <CardStyled className={"card-selected-styled"}>
-        <h3>Recipe Details</h3>
-        <SelectedRecipeContent 
-          cardSelected={props.cardSelected}
-        />
-      </CardStyled>
+    <CardStyled className={"card-selected-styled"}>
+      <h3>Recipe Details</h3>
+      <SelectedRecipeContent cardSelected={props.cardSelected} />
+    </CardStyled>
   );
 }
 

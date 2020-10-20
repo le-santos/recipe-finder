@@ -11,7 +11,9 @@ const HeaderStyled = styled.header`
 `;
 
 function Header(props) {
-  return <HeaderStyled style={props.customStyle}>{props.children}</HeaderStyled>;
+  return (
+    <HeaderStyled style={props.customStyle}>{props.children}</HeaderStyled>
+  );
 }
 
 export default Header;

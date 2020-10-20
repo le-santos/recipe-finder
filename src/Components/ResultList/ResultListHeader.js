@@ -18,7 +18,7 @@ function ResultListHeader(props) {
         hoverColor={"var(--color5)"}
         clicked={props.closeResult}
       >
-        <CloseIcon color={"var(--color1)"} size={"lg"}/>
+        <CloseIcon color={"var(--color1)"} size={"lg"} />
       </Button>
     </Header>
   );
