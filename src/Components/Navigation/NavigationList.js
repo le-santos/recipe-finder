@@ -11,7 +11,13 @@ function NavigationList(props) {
 
   const navList = props.menuList.map((item, index) => {
     return (
-      <NavigationItem key={`nav-${index}`} text={item}/>
+      <NavigationItem 
+        key={`nav-${index}`} 
+        text={item} 
+        clicked={() => {
+          props.searchByCategory(item);
+          props.closeSideDrawer();
+          }}/>
     )
   })
 

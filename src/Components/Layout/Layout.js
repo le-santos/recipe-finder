@@ -1,6 +1,10 @@
 import React, {useState} from "react";
 import AppToolbar from "../AppToolbar/AppToolbar";
 import SideDrawer from "../SideDrawer/SideDrawer";
+import SearchBox from "../SearchBox/SearchBox";
+import BackGroundHome from "../UI/BackgroundHome";
+import ResultBox from "../../Containers/ResultBox";
+
 
 function Layout(props) {
   const [sideDrawerVisible, setSideDrawerVisible] = useState(false);
@@ -17,9 +21,18 @@ function Layout(props) {
     "Seafood", 
     "Vegetarian", 
     "Vegan", 
-    "Desserts", 
-    "Miscelaneous"
+    "Dessert", 
+    "Miscellaneous"
   ] 
+
+  const resultBoxIsOn = props.resultVisible && (
+    <ResultBox
+      searchText={props.searchInfo[0]}
+      apiRequestMethod={props.searchInfo[1]}
+      closeBox={props.closeResult}
+      searchId={props.searchId}
+    />
+  );
 
   return (
     <React.Fragment>
@@ -28,8 +41,19 @@ function Layout(props) {
         menuList={menuItems}
         closeSideDrawer={toggleMenu} 
         isSideDrawerVisible={sideDrawerVisible} 
-        isBackdropVisible={sideDrawerVisible} />
-      <main>{props.children}</main>
+        isBackdropVisible={sideDrawerVisible} 
+        searchByCategory={props.searchByCategory}
+        />
+      <main>
+        <SearchBox
+          value={props.inputValue}
+          changed={props.handleInput}
+          clickSearch={props.search}
+          clickRandom={props.randomSearch}
+        />
+        <BackGroundHome />
+        {resultBoxIsOn}
+      </main>
     </React.Fragment>
   );
 }

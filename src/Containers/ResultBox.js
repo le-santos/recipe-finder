@@ -43,6 +43,7 @@ function ResultBox(props) {
       search: `search.php?s=${searchQuery.replace(" ", "_")}`,
       random: "random.php",
       byId: `lookup.php?i=${recipeId}`,
+      byCategory: `filter.php?c=${searchQuery}`
     };
 
     fetch(urlBase + apiMethod[requestType])

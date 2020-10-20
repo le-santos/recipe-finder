@@ -37,15 +37,19 @@ function SideDrawer(props) {
         isBackdropVisible={props.isSideDrawerVisible}
         customZindex={"100"}
         />
-      <SideDivStyled changeLeftPosition={moveDrawer}>
+      <SideNavStyled changeLeftPosition={moveDrawer}>
         <Header customStyle={headerStyle}>
           <h3>Recipes by category</h3>
           <span style={{"float": "right", "fontSize": "2em", cursor: "pointer"}}>
             <CloseIcon  size={"sm"} clicked={props.closeSideDrawer}/>
           </span>
         </Header>
-        <NavigationList menuList={props.menuList} />
-      </SideDivStyled>
+        <NavigationList 
+          menuList={props.menuList} 
+          searchByCategory={props.searchByCategory}
+          closeSideDrawer={props.closeSideDrawer}
+          />
+      </SideNavStyled>
     </React.Fragment>
   )
 }
