@@ -1,9 +1,7 @@
-import React, { useState, Fragment } from "react";
-import ResultBox from "./ResultBox";
-import SearchBox from "../Components/SearchBox/SearchBox";
-import BackGroundHome from "../Components/UI/BackgroundHome";
+import React, {useState} from "react";
+import Layout from "../Components/Layout/Layout";
 
-function RecipeFinderMain(props) {
+function App() {
   const [inputValue, setInputValue] = useState("");
   const [resultVisibility, setResultVisibility] = useState(false);
   const [searchInfo, setSearchInfo] = useState(["", ""]);
@@ -30,32 +28,31 @@ function RecipeFinderMain(props) {
     setResultVisibility(true);
   };
 
+  const getCategoryList = (category) => {
+    setSearchInfo([category, "byCategory"]);
+    setResultVisibility(true);
+  };
+
   const closeResult = () => {
     setResultVisibility(false);
     setInputValue("");
+    setSearchInfo(["", ""]);
+    setSearchId("")
   };
 
-  const resultBoxIsOn = resultVisibility && (
-    <ResultBox
-      searchText={searchInfo[0]}
-      apiRequestMethod={searchInfo[1]}
-      closeBox={closeResult}
-      searchId={searchId}
-    />
-  );
 
   return (
-    <Fragment>
-      <SearchBox
-        value={inputValue}
-        changed={handleInput}
-        clickSearch={getSearch}
-        clickRandom={getRandom}
-      />
-      <BackGroundHome />
-      {resultBoxIsOn}
-    </Fragment>
+      <Layout className="App"
+        searchByCategory={getCategoryList}
+        handleInput = {handleInput}
+        inputValue = {inputValue}
+        search={getSearch}
+        randomSearch={getRandom}
+        searchInfo={searchInfo}
+        searchId={searchId}
+        resultVisible={resultVisibility}
+        closeResult={closeResult} />
   );
 }
 
-export default RecipeFinderMain;
+export default App;
