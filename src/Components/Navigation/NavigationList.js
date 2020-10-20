@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import NavigationItem from "./NavigationItem";
 
-const NavStyled = styled.nav`
+const ListStyled = styled.ul`
   display: flex;
   flex-flow: column;
+  list-style-type: none;
 `
 
 function NavigationList(props) {
@@ -22,9 +23,9 @@ function NavigationList(props) {
   })
 
   return (
-    <NavStyled>
+    <ListStyled>
       {navList}
-    </NavStyled>
+    </ListStyled>
   )
 }
 

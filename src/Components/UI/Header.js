@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const DivStyled = styled.div`
+const HeaderStyled = styled.header`
   background-color: var(--color5);
   display: flex;
   justify-content: space-between;
@@ -11,7 +11,7 @@ const DivStyled = styled.div`
 `;
 
 function Header(props) {
-  return <DivStyled style={props.customStyle}>{props.children}</DivStyled>;
+  return <HeaderStyled style={props.customStyle}>{props.children}</HeaderStyled>;
 }
 
 export default Header;

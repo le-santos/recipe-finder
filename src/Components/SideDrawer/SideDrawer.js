@@ -5,7 +5,7 @@ import Backdrop from "../UI/Backdrop";
 import NavigationList from "../Navigation/NavigationList";
 import Header from "../UI/Header";
 
-const SideDivStyled = styled.div`
+const SideNavStyled = styled.nav`
   position: fixed;
   top: 0;
   left: ${props => props.changeLeftPosition};
