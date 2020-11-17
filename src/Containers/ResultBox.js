@@ -1,9 +1,9 @@
-import React, { useState, useEffect, Fragment } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, Fragment } from "react";
 import styled from "styled-components";
-import ResultListHeader from "../Components/ResultList/ResultListHeader";
-import ResultBody from "../Components/ResultList/ResultListBody";
 import Backdrop from "../Components/UI/Backdrop";
 import SelectedRecipeCard from "../Components/SelectedRecipeCard/SelectedRecipeCard";
+import fetchRecipesAPI from "../services/fetchRecipes";
 
 const DivStyled = styled.div`
   margin: 0em 0.8em;
@@ -21,65 +21,58 @@ const DivStyled = styled.div`
 `;
 
 function ResultBox(props) {
-  const [recipeList, setRecipeList] = useState([]);
-  const [selectedCard, setSelectedCard] = useState([{ key: null }]);
-
-  useEffect(() => {
-    props
-      .getRecipes(props.searchText, props.apiRequestMethod, props.selectedCard)
+  const fetchRecipes = () =>
+    fetchRecipesAPI(
+      props.searchText,
+      props.apiRequestMethod,
+      props.selectedCardId
+    )
       .then((res) => res.json())
       .then((data) => {
-        props.setRecipeList(data.meals);
+        console.log(data.meals);
+        props.apiRequestMethod === "byId"
+          ? props.setRecipeDetails(...data.meals)
+          : props.setRecipeList([...data.meals]);
       });
+
+  useEffect(() => {
+    fetchRecipes();
   }, [props.searchId]);
 
   useEffect(() => {
-    if (selectedCard[0].idMeal !== undefined) {
+    if (props.recipeDetails.idMeal !== undefined) {
       window.addEventListener("keydown", closeSelected);
     }
     return () => {
       window.removeEventListener("keydown", closeSelected); // clean up function in useEffect
     };
-  }, [props.selectedCard]);
-
-  const closeResult = () => {
-    setRecipeList([]);
-    setSelectedCard([{ key: null }]);
-    props.closeBox();
-  };
+  }, [props.recipeDetails]);
 
   const closeSelected = (event) => {
     if (
       event.type === "click" ||
       (event.type === "keydown" && event.key === "Escape")
     ) {
-      setSelectedCard([{ key: null }]);
+      props.setSelectedCardId(null);
     }
   };
 
-  const pickRecipe = (e) => {
-    const recipeCardKey = e.target.parentNode.id;
-    console.log(recipeCardKey);
-    props.getRecipes("", "byId", recipeCardKey);
-  };
-
   const isCardSelected =
-    selectedCard[0].key === null ? null : (
+    props.selectedCardId === null ? null : (
       <Fragment>
         <Backdrop
           clicked={closeSelected}
-          isBackdropVisible={selectedCard[0]}
+          isBackdropVisible={props.selectedCardId}
           customZindex={"10"}
         />
-        <SelectedRecipeCard cardSelected={selectedCard[0]} />
+        <SelectedRecipeCard recipeDetails={props.recipeDetails} />
       </Fragment>
     );
 
   return (
     <DivStyled>
-      <ResultListHeader closeResult={closeResult} />
-      <ResultBody recipeList={recipeList} selectCard={pickRecipe} />
       {isCardSelected}
+      {props.children}
     </DivStyled>
   );
 }
