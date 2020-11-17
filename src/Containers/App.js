@@ -3,6 +3,7 @@ import Layout from "../Components/Layout/Layout";
 import SearchBox from "../Components/SearchBox/SearchBox";
 import BackGroundHome from "../Components/UI/BackgroundHome";
 import ResultBox from "./ResultBox";
+import fetchRecipesAPI from "../services/fetchRecipes";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -53,7 +54,9 @@ function App() {
       setRecipeList={setRecipeList}
       selectedCard={selectedCard}
       setSelectedCard={setSelectedCard}
+      getRecipes={fetchRecipesAPI}
     />
+  );
 
   return (
     <Layout
