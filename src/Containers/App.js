@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Layout from "../Components/Layout/Layout";
+import SearchBox from "../Components/SearchBox/SearchBox";
+import BackGroundHome from "../Components/UI/BackgroundHome";
+import ResultBox from "./ResultBox";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -40,19 +43,32 @@ function App() {
     setSearchId("");
   };
 
+  const isResultBoxOn = props.resultVisible && (
+    <ResultBox
+      searchText={searchInfo[0]}
+      apiRequestMethod={searchInfo[1]}
+      closeBox={closeResult}
+      searchId={searchId}
+      recipeList={recipeList}
+      setRecipeList={setRecipeList}
+      selectedCard={selectedCard}
+      setSelectedCard={setSelectedCard}
+    />
+
   return (
     <Layout
       className="App"
-      searchByCategory={getCategoryList}
-      handleInput={handleInput}
-      inputValue={inputValue}
-      search={getSearch}
-      randomSearch={getRandom}
-      searchInfo={searchInfo}
-      searchId={searchId}
-      resultVisible={resultVisibility}
-      closeResult={closeResult}
-    />
+      searchByCategory={getCategoryRecipes}
+    >
+      <SearchBox
+        value={inputValue}
+        changed={handleInput}
+        clickSearch={getRecipes}
+        clickRandom={getRandomRecipes}
+      />
+      <BackGroundHome />
+      {isResultBoxOn}
+    </Layout>
   );
 }
 
