@@ -29,7 +29,7 @@ function RecipeCardSelected(props) {
   return (
     <CardStyled className={"card-selected-styled"}>
       <h3>Recipe Details</h3>
-      <SelectedRecipeContent cardSelected={props.cardSelected} />
+      <SelectedRecipeContent recipeDetails={props.recipeDetails} />
     </CardStyled>
   );
 }

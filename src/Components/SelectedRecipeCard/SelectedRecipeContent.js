@@ -16,14 +16,14 @@ function SelectedRecipeContent(props) {
   return (
     <CardContentDiv>
       <img
-        src={props.cardSelected.strMealThumb}
-        alt={`${props.cardSelected.strMeal}-recipe`}
+        src={props.recipeDetails.strMealThumb}
+        alt={`${props.recipeDetails.strMeal}-recipe`}
         width={"50%"}
         height={"auto"}
       />
-      <h3>{props.cardSelected.strMeal}</h3>
-      <p>{props.cardSelected.strInstructions}</p>
-      <IngredientsTable recipeSelected={props.cardSelected} />
+      <h3>{props.recipeDetails.strMeal}</h3>
+      <p>{props.recipeDetails.strInstructions}</p>
+      <IngredientsTable recipeSelected={props.recipeDetails} />
     </CardContentDiv>
   );
 }

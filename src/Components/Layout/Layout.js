@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import AppToolbar from "../AppToolbar/AppToolbar";
 import SideDrawer from "../SideDrawer/SideDrawer";
-import SearchBox from "../SearchBox/SearchBox";
-import BackGroundHome from "../UI/BackgroundHome";
-import ResultBox from "../../Containers/ResultBox";
 import GlobalStyle from "./GlobalStyle";
 
 function Layout(props) {
@@ -25,15 +22,6 @@ function Layout(props) {
     "Miscellaneous",
   ];
 
-  const resultBoxIsOn = props.resultVisible && (
-    <ResultBox
-      searchText={props.searchInfo[0]}
-      apiRequestMethod={props.searchInfo[1]}
-      closeBox={props.closeResult}
-      searchId={props.searchId}
-    />
-  );
-
   return (
     <React.Fragment>
       <GlobalStyle />
@@ -45,16 +33,7 @@ function Layout(props) {
         isBackdropVisible={sideDrawerVisible}
         searchByCategory={props.searchByCategory}
       />
-      <main>
-        <SearchBox
-          value={props.inputValue}
-          changed={props.handleInput}
-          clickSearch={props.search}
-          clickRandom={props.randomSearch}
-        />
-        <BackGroundHome />
-        {resultBoxIsOn}
-      </main>
+      <main>{props.children}</main>
     </React.Fragment>
   );
 }

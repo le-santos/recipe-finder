@@ -1,58 +1,94 @@
 import React, { useState } from "react";
 import Layout from "../Components/Layout/Layout";
+import ResultBody from "../Components/ResultBox/ResultListBody";
+import ResultListHeader from "../Components/ResultBox/ResultListHeader";
+import SearchBox from "../Components/SearchBox/SearchBox";
+import BackGroundHome from "../Components/UI/BackgroundHome";
+import ResultBox from "../Components/ResultBox/ResultBox";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [resultVisibility, setResultVisibility] = useState(false);
-  const [searchInfo, setSearchInfo] = useState(["", ""]);
+  const [searchText, setSearchText] = useState("");
+  const [requestMethod, setRequestMethod] = useState("");
   const [searchId, setSearchId] = useState("");
+  const [recipeList, setRecipeList] = useState([]);
+  const [selectedCardId, setSelectedCardId] = useState(null);
+  const [recipeDetails, setRecipeDetails] = useState({});
 
   const handleInput = (e) => {
     let value = e.target.value;
     setInputValue(value);
   };
 
-  const getSearch = () => {
+  const getRecipes = () => {
     if (inputValue.trim()) {
+      setSearchId(Math.random().toFixed(8).toString());
+      setSearchText(inputValue);
+      setRequestMethod("search");
       setResultVisibility(true);
-      setSearchInfo([inputValue, "search"]);
-      setInputValue("");
-    } else {
-      setInputValue("");
     }
+    setInputValue("");
   };
 
-  const getRandom = () => {
+  const getRandomRecipes = () => {
     setSearchId(Math.random().toFixed(8).toString());
-    setSearchInfo(["", "random"]);
+    setSearchText("");
+    setRequestMethod("random");
     setResultVisibility(true);
   };
 
-  const getCategoryList = (category) => {
-    setSearchInfo([category, "byCategory"]);
+  const getCategoryRecipes = (category) => {
+    setSearchId(Math.random().toFixed(8).toString());
+    setSearchText(category);
+    setRequestMethod("byCategory");
     setResultVisibility(true);
+  };
+
+  const pickRecipe = (e) => {
+    const recipeCardKey = e.target.parentNode.id;
+    setSelectedCardId(recipeCardKey);
+    setRequestMethod("byId");
+    setSearchId(Math.random().toFixed(8).toString());
   };
 
   const closeResult = () => {
     setResultVisibility(false);
     setInputValue("");
-    setSearchInfo(["", ""]);
+    setSearchText("");
+    setRequestMethod("");
+    setRecipeList([]);
     setSearchId("");
   };
 
-  return (
-    <Layout
-      className="App"
-      searchByCategory={getCategoryList}
-      handleInput={handleInput}
-      inputValue={inputValue}
-      search={getSearch}
-      randomSearch={getRandom}
-      searchInfo={searchInfo}
+  const isResultBoxOn = resultVisibility && (
+    <ResultBox
+      searchText={searchText}
+      apiRequestMethod={requestMethod}
+      selectedCardId={selectedCardId}
       searchId={searchId}
-      resultVisible={resultVisibility}
-      closeResult={closeResult}
-    />
+      recipeList={recipeList}
+      setRecipeList={setRecipeList}
+      setSelectedCardId={setSelectedCardId}
+      recipeDetails={recipeDetails}
+      setRecipeDetails={setRecipeDetails}
+    >
+      <ResultListHeader closeResult={closeResult} />
+      <ResultBody recipeList={recipeList} selectCard={pickRecipe} />
+    </ResultBox>
+  );
+
+  return (
+    <Layout className="App" searchByCategory={getCategoryRecipes}>
+      <SearchBox
+        value={inputValue}
+        changed={handleInput}
+        clickSearch={getRecipes}
+        clickRandom={getRandomRecipes}
+      />
+      <BackGroundHome />
+      {isResultBoxOn}
+    </Layout>
   );
 }
 
