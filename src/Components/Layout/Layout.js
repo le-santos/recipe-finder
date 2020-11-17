@@ -4,6 +4,7 @@ import SideDrawer from "../SideDrawer/SideDrawer";
 import SearchBox from "../SearchBox/SearchBox";
 import BackGroundHome from "../UI/BackgroundHome";
 import ResultBox from "../../Containers/ResultBox";
+import GlobalStyle from "./GlobalStyle";
 
 function Layout(props) {
   const [sideDrawerVisible, setSideDrawerVisible] = useState(false);
@@ -35,6 +36,7 @@ function Layout(props) {
 
   return (
     <React.Fragment>
+      <GlobalStyle />
       <AppToolbar toggleMenu={toggleMenu} />
       <SideDrawer
         menuList={menuItems}
