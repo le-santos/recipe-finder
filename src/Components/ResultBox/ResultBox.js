@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, Fragment } from "react";
 import styled from "styled-components";
-import Backdrop from "../Components/UI/Backdrop";
-import SelectedRecipeCard from "../Components/SelectedRecipeCard/SelectedRecipeCard";
-import fetchRecipesAPI from "../services/fetchRecipes";
+import Backdrop from "../UI/Backdrop";
+import SelectedRecipeCard from "../SelectedRecipeCard/SelectedRecipeCard";
+import fetchRecipesAPI from "../../services/fetchRecipes";
 
 const DivStyled = styled.div`
   margin: 0em 0.8em;

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Layout from "../Components/Layout/Layout";
-import ResultBody from "../Components/ResultList/ResultListBody";
-import ResultListHeader from "../Components/ResultList/ResultListHeader";
+import ResultBody from "../Components/ResultBox/ResultListBody";
+import ResultListHeader from "../Components/ResultBox/ResultListHeader";
 import SearchBox from "../Components/SearchBox/SearchBox";
 import BackGroundHome from "../Components/UI/BackgroundHome";
-import ResultBox from "./ResultBox";
+import ResultBox from "../Components/ResultBox/ResultBox";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
