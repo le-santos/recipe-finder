@@ -15,7 +15,7 @@ function App() {
     setInputValue(value);
   };
 
-  const getSearch = () => {
+  const getRecipes = () => {
     if (inputValue.trim()) {
       setResultVisibility(true);
       setSearchInfo([inputValue, "search"]);
@@ -25,13 +25,13 @@ function App() {
     }
   };
 
-  const getRandom = () => {
+  const getRandomRecipes = () => {
     setSearchId(Math.random().toFixed(8).toString());
     setSearchInfo(["", "random"]);
     setResultVisibility(true);
   };
 
-  const getCategoryList = (category) => {
+  const getCategoryRecipes = (category) => {
     setSearchInfo([category, "byCategory"]);
     setResultVisibility(true);
   };
