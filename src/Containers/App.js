@@ -5,6 +5,7 @@ import ResultListHeader from "../Components/ResultBox/ResultListHeader";
 import SearchBox from "../Components/SearchBox/SearchBox";
 import BackGroundHome from "../Components/UI/BackgroundHome";
 import ResultBox from "../Components/ResultBox/ResultBox";
+import { nanoid } from "nanoid";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -23,7 +24,7 @@ function App() {
 
   const getRecipes = () => {
     if (inputValue.trim()) {
-      setSearchId(Math.random().toFixed(8).toString());
+      setSearchId(nanoid(12));
       setSearchText(inputValue);
       setRequestMethod("search");
       setResultVisibility(true);
@@ -32,14 +33,14 @@ function App() {
   };
 
   const getRandomRecipes = () => {
-    setSearchId(Math.random().toFixed(8).toString());
+    setSearchId(nanoid(12));
     setSearchText("");
     setRequestMethod("random");
     setResultVisibility(true);
   };
 
   const getCategoryRecipes = (category) => {
-    setSearchId(Math.random().toFixed(8).toString());
+    setSearchId(nanoid(12));
     setSearchText(category);
     setRequestMethod("byCategory");
     setResultVisibility(true);
@@ -49,7 +50,7 @@ function App() {
     const recipeCardKey = e.target.parentNode.id;
     setSelectedCardId(recipeCardKey);
     setRequestMethod("byId");
-    setSearchId(Math.random().toFixed(8).toString());
+    setSearchId(nanoid(12));
   };
 
   const closeResult = () => {
