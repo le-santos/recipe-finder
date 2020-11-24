@@ -12,18 +12,18 @@ const CardContentDiv = styled.div`
   border-radius: 10px;
 `;
 
-function SelectedRecipeContent(props) {
+function SelectedRecipeContent({ recipeDetails }) {
   return (
     <CardContentDiv>
       <img
-        src={props.recipeDetails.strMealThumb}
-        alt={`${props.recipeDetails.strMeal}-recipe`}
+        src={recipeDetails.strMealThumb}
+        alt={`${recipeDetails.strMeal}-recipe`}
         width={"50%"}
         height={"auto"}
       />
-      <h3>{props.recipeDetails.strMeal}</h3>
-      <p>{props.recipeDetails.strInstructions}</p>
-      <IngredientsTable recipeSelected={props.recipeDetails} />
+      <h3>{recipeDetails.strMeal}</h3>
+      <p>{recipeDetails.strInstructions}</p>
+      <IngredientsTable recipeSelected={recipeDetails} />
     </CardContentDiv>
   );
 }
