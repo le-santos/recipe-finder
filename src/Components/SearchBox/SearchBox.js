@@ -26,7 +26,7 @@ function SearchBox(props) {
       <Input
         text={"Search by name"}
         value={props.value}
-        changed={props.changed}
+        onChange={props.onChange}
       />
       <span>
         <Button

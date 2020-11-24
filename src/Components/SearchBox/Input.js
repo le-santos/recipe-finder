@@ -15,7 +15,7 @@ function Input(props) {
         {props.text}
       </p>
       <InputTextStyled
-        onChange={props.changed}
+        onChange={props.onChange}
         value={props.value}
         id={props.id}
         type={"text"}

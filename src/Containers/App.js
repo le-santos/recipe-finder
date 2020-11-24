@@ -83,7 +83,7 @@ function App() {
     <Layout className="App" searchByCategory={getCategoryRecipes}>
       <SearchBox
         value={inputValue}
-        changed={handleInput}
+        onChange={handleInput}
         clickSearch={getRecipes}
         clickRandom={getRandomRecipes}
       />
