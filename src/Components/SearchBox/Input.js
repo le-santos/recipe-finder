@@ -8,16 +8,16 @@ const InputTextStyled = styled.input`
   outline: none;
 `;
 
-function Input(props) {
+function Input({ label, value, id, type, placeholder, onChange, ...props }) {
   return (
     <React.Fragment>
       <p className={"text-input"} style={{ margin: "0 1em" }}>
-        {props.text}
+        {props.label}
       </p>
       <InputTextStyled
-        onChange={props.onChange}
-        value={props.value}
-        id={props.id}
+        onChange={onChange}
+        value={value}
+        id={id}
         type={"text"}
         placeholder={"ex: chicken, salmon, pie "}
       ></InputTextStyled>

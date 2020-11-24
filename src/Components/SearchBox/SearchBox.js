@@ -20,14 +20,10 @@ const DivSearch = styled.div`
   }
 `;
 
-function SearchBox(props) {
+function SearchBox({ value, onChange, clickSearch, clickRandom, ...props }) {
   return (
     <DivSearch>
-      <Input
-        text={"Search by name"}
-        value={props.value}
-        onChange={props.onChange}
-      />
+      <Input label={"Search by name"} value={value} onChange={onChange} />
       <span>
         <Button
           type={"button"}
@@ -35,7 +31,7 @@ function SearchBox(props) {
           id={"search"}
           color={"var(--color4)"}
           hoverColor={"var(--color2)"}
-          clicked={props.clickSearch}
+          clicked={clickSearch}
         />
         <Button
           type={"button"}
@@ -43,7 +39,7 @@ function SearchBox(props) {
           id={"random"}
           color={"var(--color4)"}
           hoverColor={"var(--color2)"}
-          clicked={props.clickRandom}
+          clicked={clickRandom}
         />
       </span>
     </DivSearch>
