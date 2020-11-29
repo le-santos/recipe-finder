@@ -1,9 +1,13 @@
 # Recipe-Finder
-This is a web applicaton made with React that search for recipes using The MealDB API.
+This is a recipe finder web applicaton made with React using The MealDB API.
 
 It's built with learning purposes, based on [Florin Pop App Ideas](https://github.com/florinpop17/app-ideas).
 
 Check it live here: [https://recipe-finder-three.vercel.app/](https://recipe-finder-three.vercel.app/)
+
+## Screenshot
+
+![Recipe Finder Desktop](https://user-images.githubusercontent.com/57023693/98553858-d2099880-227e-11eb-9824-3b48b02f776e.png)
 
 ## Features
 - Search for recipes by typing the main ingredient (i.e. "Chicken", "Cheese")
