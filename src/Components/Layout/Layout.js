@@ -25,7 +25,10 @@ function Layout(props) {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <AppToolbar toggleMenu={toggleMenu} />
+      <AppToolbar
+        toggleMenu={toggleMenu}
+        searchByCategory={props.searchByCategory}
+      />
       <SideDrawer
         menuList={menuItems}
         closeSideDrawer={toggleMenu}
