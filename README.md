@@ -7,7 +7,7 @@ Check it live here: [https://recipe-finder-three.vercel.app/](https://recipe-fin
 
 ## Screenshot
 
-![Recipe Finder Desktop](https://user-images.githubusercontent.com/57023693/98553858-d2099880-227e-11eb-9824-3b48b02f776e.png)
+![Recipe Finder Mobile](https://user-images.githubusercontent.com/57023693/103819928-21cfca80-504a-11eb-86ec-531c89e38574.png)
 
 ## Features
 - Search for recipes by typing the main ingredient (i.e. "Chicken", "Cheese")
