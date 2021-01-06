@@ -18,7 +18,7 @@ const MenuDesktop = (props) => {
   return (
     <React.Fragment>
       <MenuLinkStyled>
-        Recipe Categories
+        Food Categories
         <NavigationList
           menuList={menuItems}
           searchByCategory={props.searchByCategory}

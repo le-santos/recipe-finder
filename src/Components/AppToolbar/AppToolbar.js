@@ -17,7 +17,7 @@ function AppToolbar(props) {
         clicked={props.toggleMenu}
         searchByCategory={props.searchByCategory}
       />
-      <h1>Recipe Finder App</h1>
+      <h1>Recipe Finder</h1>
       <UtensilsIcon size={"2x"} color={"#fdfdfd"} />
     </Header>
   );
