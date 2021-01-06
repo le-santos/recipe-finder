@@ -20,10 +20,15 @@ const DivSearch = styled.div`
   }
 `;
 
-function SearchBox({ value, onChange, clickSearch, clickRandom, ...props }) {
+function SearchBox({ value, onChange, clickSearch, clickRandom, onKeyDown }) {
   return (
     <DivSearch>
-      <Input label={"Search by name"} value={value} onChange={onChange} />
+      <Input
+        label={"Search by name"}
+        value={value}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+      />
       <span>
         <Button
           type={"button"}

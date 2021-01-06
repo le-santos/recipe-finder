@@ -39,6 +39,12 @@ function App() {
     setResultVisibility(true);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      getRecipes();
+    }
+  };
+
   const getCategoryRecipes = (category) => {
     setSearchId(nanoid(12));
     setSearchText(category);
@@ -86,6 +92,7 @@ function App() {
         onChange={handleInput}
         clickSearch={getRecipes}
         clickRandom={getRandomRecipes}
+        onKeyDown={handleKeyDown}
       />
       <BackGroundHome />
       {isResultBoxOn}
