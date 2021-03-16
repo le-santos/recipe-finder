@@ -19,7 +19,7 @@ const CardStyled = styled.div`
   transition: top 0.7s;
 `;
 
-function RecipeCardSelected(props) {
+function RecipeCardSelected({ recipeDetails }) {
   useEffect(() => {
     setTimeout(() => {
       document.querySelector(".card-selected-styled").style.top = "60px";
@@ -29,7 +29,7 @@ function RecipeCardSelected(props) {
   return (
     <CardStyled className={"card-selected-styled"}>
       <h3>Recipe Details</h3>
-      <SelectedRecipeContent recipeDetails={props.recipeDetails} />
+      <SelectedRecipeContent recipeDetails={recipeDetails} />
     </CardStyled>
   );
 }

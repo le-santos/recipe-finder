@@ -13,16 +13,16 @@ const DivBackdropStyled = styled.div`
   width: 100vw;
 `;
 
-function Backdrop(props) {
+function Backdrop({ clicked, isBackdropVisible, customZindex }) {
   const showBackdrop = () => {
-    return props.isBackdropVisible ? "block" : "none";
+    return isBackdropVisible ? "block" : "none";
   };
 
   return (
     <DivBackdropStyled
-      onClick={props.clicked}
+      onClick={clicked}
       changeDisplay={showBackdrop}
-      customZindex={props.customZindex}
+      customZindex={customZindex}
     />
   );
 }

@@ -24,16 +24,16 @@ const BtnStyled = styled.button`
   }
 `;
 
-function Button(props) {
+function Button({ clicked, type, color, hoverColor, id, name, ...props }) {
   return (
     <BtnStyled
-      onClick={props.clicked}
-      type={props.type}
-      color={props.color}
-      hoverColor={props.hoverColor}
-      id={props.id}
+      onClick={clicked}
+      type={type}
+      color={color}
+      hoverColor={hoverColor}
+      id={id}
     >
-      {props.name}
+      {name}
       {props.children}
     </BtnStyled>
   );

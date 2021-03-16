@@ -20,13 +20,13 @@ const sadIcon = (
 
 function ResultBody({ recipeList, selectCard }) {
   let results = recipeList ? (
-    recipeList.map((item) => (
+    recipeList.map(({ idMeal, strMealThumb, strMeal }) => (
       <RecipeListCard
-        key={item.idMeal}
-        id={item.idMeal}
-        src={item.strMealThumb}
-        alt={`${item.strMeal}-recipe-photo`}
-        recipeName={item.strMeal}
+        key={idMeal}
+        id={idMeal}
+        src={strMealThumb}
+        alt={`${strMeal}-recipe-photo`}
+        recipeName={strMeal}
         selectCard={selectCard}
       />
     ))

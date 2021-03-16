@@ -3,13 +3,13 @@ import HamburgerIcon from "../Icons/HamburgerIcon";
 import MenuDesktop from "./MenuDesktop";
 import MenuMobile from "./MenuMobile";
 
-const HeaderMenu = (props) => {
+const HeaderMenu = ({ clicked, searchByCategory }) => {
   return (
     <React.Fragment>
       <MenuMobile>
-        <HamburgerIcon size={"2x"} color={"#fdfdfd"} clicked={props.clicked} />
+        <HamburgerIcon size={"2x"} color={"#fdfdfd"} clicked={clicked} />
       </MenuMobile>
-      <MenuDesktop searchByCategory={props.searchByCategory} />
+      <MenuDesktop searchByCategory={searchByCategory} />
     </React.Fragment>
   );
 };

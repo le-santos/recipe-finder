@@ -10,7 +10,7 @@ const HeaderStyled = styled.header`
   color: var(--color1);
 `;
 
-function Header(props) {
+function Header({ customStyle, ...props }) {
   return (
     <HeaderStyled style={props.customStyle}>{props.children}</HeaderStyled>
   );

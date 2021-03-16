@@ -14,14 +14,14 @@ const menuItems = [
   "Miscellaneous",
 ];
 
-const MenuDesktop = (props) => {
+const MenuDesktop = ({ searchByCategory }) => {
   return (
     <React.Fragment>
       <MenuLinkStyled>
         Food Categories
         <NavigationList
           menuList={menuItems}
-          searchByCategory={props.searchByCategory}
+          searchByCategory={searchByCategory}
           parent={MenuLinkStyled}
         />
       </MenuLinkStyled>

@@ -17,9 +17,14 @@ const SideNavStyled = styled.nav`
   transition: left 0.5s;
 `;
 
-function SideDrawer(props) {
+function SideDrawer({
+  isSideDrawerVisible,
+  closeSideDrawer,
+  menuList,
+  searchByCategory,
+}) {
   const moveDrawer = () => {
-    return props.isSideDrawerVisible ? "0px" : "-500px";
+    return isSideDrawerVisible ? "0px" : "-500px";
   };
 
   const headerStyle = {
@@ -30,21 +35,21 @@ function SideDrawer(props) {
   return (
     <React.Fragment>
       <Backdrop
-        clicked={props.closeSideDrawer}
-        isBackdropVisible={props.isSideDrawerVisible}
+        clicked={closeSideDrawer}
+        isBackdropVisible={isSideDrawerVisible}
         customZindex={"100"}
       />
       <SideNavStyled changeLeftPosition={moveDrawer}>
         <Header customStyle={headerStyle}>
           <h3>Recipes by category</h3>
           <span style={{ float: "right", fontSize: "2em", cursor: "pointer" }}>
-            <CloseIcon size={"sm"} clicked={props.closeSideDrawer} />
+            <CloseIcon size={"sm"} clicked={closeSideDrawer} />
           </span>
         </Header>
         <NavigationList
-          menuList={props.menuList}
-          searchByCategory={props.searchByCategory}
-          closeSideDrawer={props.closeSideDrawer}
+          menuList={menuList}
+          searchByCategory={searchByCategory}
+          closeSideDrawer={closeSideDrawer}
         />
       </SideNavStyled>
     </React.Fragment>
