@@ -18,16 +18,16 @@ const sadIcon = (
   <FontAwesomeIcon icon={faSadCry} size={"3x"} color={"var(--color5)"} />
 );
 
-function ResultBody(props) {
-  let results = props.recipeList ? (
-    props.recipeList.map((item) => (
+function ResultBody({ recipeList, selectCard }) {
+  let results = recipeList ? (
+    recipeList.map((item) => (
       <RecipeListCard
         key={item.idMeal}
         id={item.idMeal}
         src={item.strMealThumb}
         alt={`${item.strMeal}-recipe-photo`}
         recipeName={item.strMeal}
-        selectCard={props.selectCard}
+        selectCard={selectCard}
       />
     ))
   ) : (

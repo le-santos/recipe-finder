@@ -20,23 +20,28 @@ const ListStyled = styled.ul`
   }
 `;
 
-function NavigationList(props) {
-  const navList = props.menuList.map((item, index) => {
+function NavigationList({
+  menuList,
+  searchByCategory,
+  parent,
+  closeSideDrawer,
+}) {
+  const navList = menuList.map((item, index) => {
     return (
       <NavigationItem
         key={`nav-${index}`}
         text={item}
         clicked={() => {
-          props.searchByCategory(item);
-          if (props.parent !== MenuLinkStyled) {
-            props.closeSideDrawer();
+          searchByCategory(item);
+          if (parent !== MenuLinkStyled) {
+            closeSideDrawer();
           }
         }}
       />
     );
   });
 
-  return <ListStyled parent={props.parent}>{navList}</ListStyled>;
+  return <ListStyled parent={parent}>{navList}</ListStyled>;
 }
 
 export default NavigationList;

@@ -11,8 +11,8 @@ const LinkStyled = styled.a`
   }
 `;
 
-function NavigationItem(props) {
-  return <LinkStyled onClick={props.clicked}>{props.text}</LinkStyled>;
+function NavigationItem({ clicked, text }) {
+  return <LinkStyled onClick={clicked}>{text}</LinkStyled>;
 }
 
 export default NavigationItem;

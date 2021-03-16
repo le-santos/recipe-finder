@@ -21,8 +21,10 @@ function SelectedRecipeContent({ recipeDetails }) {
         width={"50%"}
         height={"auto"}
       />
-      <h3>{recipeDetails.strMeal}</h3>
-      <p>{recipeDetails.strInstructions}</p>
+      <div>
+        <h3>{recipeDetails.strMeal}</h3>
+        <p>{recipeDetails.strInstructions}</p>
+      </div>
       <IngredientsTable recipeSelected={recipeDetails} />
     </CardContentDiv>
   );

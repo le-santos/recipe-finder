@@ -12,16 +12,16 @@ const DivCard = styled.div`
   box-shadow: 1px 1px 4px 1px;
 `;
 
-function RecipeListCard(props) {
+function RecipeListCard({ id, src, alt, recipeName, selectCard }) {
   return (
-    <DivCard id={props.id}>
-      <img src={props.src} alt={props.alt} width={"200px"} height={"auto"} />
-      <h3>{props.recipeName}</h3>
+    <DivCard id={id}>
+      <img src={src} alt={alt} width={"200px"} height={"auto"} />
+      <h3>{recipeName}</h3>
       <Button
         type={"button"}
         name={"Recipe Details"}
         id={"details"}
-        clicked={props.selectCard}
+        clicked={selectCard}
         color={"var(--color5)"}
         hoverColor={"var(--color2)"}
       />

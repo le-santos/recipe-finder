@@ -8,7 +8,7 @@ const style = {
   borderRadius: "8px 8px 0 0",
 };
 
-function ResultListHeader(props) {
+function ResultListHeader({ closeResult }) {
   return (
     <Header customStyle={style}>
       <p>Your results</p>
@@ -16,7 +16,7 @@ function ResultListHeader(props) {
         type={"button"}
         color={"var(--color5)"}
         hoverColor={"var(--color5)"}
-        clicked={props.closeResult}
+        clicked={closeResult}
       >
         <CloseIcon color={"var(--color1)"} size={"lg"} />
       </Button>

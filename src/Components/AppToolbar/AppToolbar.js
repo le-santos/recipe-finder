@@ -11,13 +11,10 @@ const style = {
   padding: "0.5em 5%",
 };
 
-function AppToolbar(props) {
+function AppToolbar({ toggleMenu, searchByCategory }) {
   return (
     <Header customStyle={style}>
-      <HeaderMenu
-        clicked={props.toggleMenu}
-        searchByCategory={props.searchByCategory}
-      />
+      <HeaderMenu clicked={toggleMenu} searchByCategory={searchByCategory} />
       <h1>Recipe Finder</h1>
       <UtensilsIcon size={"2x"} color={"#fdfdfd"} />
     </Header>
