@@ -8,6 +8,7 @@ const style = {
   top: "0",
   width: "100%",
   zIndex: "100",
+  padding: "0.5em 5%",
 };
 
 function AppToolbar(props) {

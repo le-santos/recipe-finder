@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const MenuLinkStyled = styled.a`
-  padding: 0.5em 1em;
+  padding: 0.5em 0;
   color: var(--color1);
   &:hover {
     color: var(--color5);

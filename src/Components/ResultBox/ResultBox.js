@@ -6,7 +6,8 @@ import SelectedRecipeCard from "../SelectedRecipeCard/SelectedRecipeCard";
 import fetchRecipesAPI from "../../services/fetchRecipes";
 
 const DivStyled = styled.div`
-  margin: 0em 0.8em;
+  margin: 0 auto;
+  max-width: 80%;
   background-color: var(--color1);
   border: none;
   border-radius: 8px;

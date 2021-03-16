@@ -10,7 +10,7 @@ const ListStyled = styled.ul`
   @media (min-width: 600px) {
     display: none;
     position: absolute;
-    left: 8px;
+    left: 5%;
     top: 46px;
     background-color: var(--color1);
     box-shadow: 1px 1px 3px var(--color5);
