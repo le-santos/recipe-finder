@@ -19,23 +19,24 @@ const sadIcon = (
 );
 
 function ResultBody({ recipeList, selectCard }) {
-  let results = recipeList ? (
-    recipeList.map(({ idMeal, strMealThumb, strMeal }) => (
-      <RecipeListCard
-        key={idMeal}
-        id={idMeal}
-        src={strMealThumb}
-        alt={`${strMeal}-recipe-photo`}
-        recipeName={strMeal}
-        selectCard={selectCard}
-      />
-    ))
-  ) : (
-    <div style={{ margin: "1em", textAlign: "center" }}>
-      <h2>Sorry, there's no recipe </h2>
-      {sadIcon}
-    </div>
-  );
+  let results =
+    recipeList.length > 0 ? (
+      recipeList.map(({ idMeal, strMealThumb, strMeal }) => (
+        <RecipeListCard
+          key={idMeal}
+          id={idMeal}
+          src={strMealThumb}
+          alt={`${strMeal}-recipe-photo`}
+          recipeName={strMeal}
+          selectCard={selectCard}
+        />
+      ))
+    ) : (
+      <div style={{ margin: "1em", textAlign: "center" }}>
+        <h2>Sorry, there's no recipe </h2>
+        {sadIcon}
+      </div>
+    );
 
   return <DivResultList>{results}</DivResultList>;
 }

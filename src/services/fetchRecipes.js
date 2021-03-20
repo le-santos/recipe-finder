@@ -8,7 +8,10 @@ async function fetchRecipesAPI(searchQuery, requestType, recipeId) {
   };
 
   const response = await fetch(urlBase + apiMethod[requestType]);
-  return response;
+  const json = await response.json();
+  const meals = json.meals;
+  console.log(meals);
+  return meals;
 }
 
 export default fetchRecipesAPI;

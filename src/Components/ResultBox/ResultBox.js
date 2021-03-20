@@ -22,19 +22,22 @@ const DivStyled = styled.div`
 `;
 
 function ResultBox(props) {
-  const fetchRecipes = () =>
-    fetchRecipesAPI(
+  const fetchRecipes = async () => {
+    const meals = await fetchRecipesAPI(
       props.searchText,
       props.apiRequestMethod,
       props.selectedCardId
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.meals);
-        props.apiRequestMethod === "byId"
-          ? props.setRecipeDetails(...data.meals)
-          : props.setRecipeList([...data.meals]);
-      });
+    );
+
+    if (meals === null) {
+      props.setRecipeList([]);
+      return;
+    }
+
+    props.apiRequestMethod === "byId"
+      ? props.setRecipeDetails({ ...meals })
+      : props.setRecipeList([...meals]);
+  };
 
   useEffect(() => {
     fetchRecipes();
