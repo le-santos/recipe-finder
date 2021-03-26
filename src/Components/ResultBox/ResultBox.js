@@ -35,7 +35,7 @@ function ResultBox(props) {
     }
 
     props.apiRequestMethod === "byId"
-      ? props.setRecipeDetails({ ...meals })
+      ? props.setRecipeDetails(...meals)
       : props.setRecipeList([...meals]);
   };
 
