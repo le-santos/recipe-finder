@@ -26,7 +26,7 @@ function ResultBox(props) {
     const meals = await fetchRecipesAPI(
       props.searchText,
       props.apiRequestMethod,
-      props.selectedCardId
+      props.selectedCardId,
     );
 
     if (meals === null) {
