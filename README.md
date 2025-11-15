@@ -14,7 +14,32 @@ Check it live here: [https://recipe-finder-three.vercel.app/](https://recipe-fin
 - Get random recipe suggestions
 - Get details of each recipe (ingredients list and preparation)  
 
-## Installation
+## How to run
+
+### Running with docker
+
+Make sure you have [Docker](https://www.docker.com/) installed.
+
+Build the docker image by running the following command in the project directory:
+
+```docker build -t recipe-finder .```
+
+Then run the container mapping the port 3000, voluming the current directory to /app in the container:
+
+```docker run -it -p 3000:3000 -v $(pwd):/app recipe-finder```
+
+Or accessing the container bash:
+
+```sh
+docker run -it -p 3000:3000 -v $(pwd):/app recipe-finder /bin/bash
+
+# then, inside the container, run:
+npm start
+
+```
+
+### Running locally
+
 Download or clone this repository.
 
 Make sure you have installed node version >= 10. You may check with: 
