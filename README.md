@@ -57,8 +57,7 @@ Next, start up a local server:
 Your app will be running at http://localhost:3000.
 
 ## Built With:
-- React v.16.13.1 - [Create React App](https://github.com/facebook/create-react-app)
-- [styled-components v.5.2.0](https://styled-components.com/)
-- [font-awesome react](https://fontawesome.com/how-to-use/on-the-web/using-with/react)
+
+- React - [Create React App](https://github.com/facebook/create-react-app)
+- [styled-components](https://styled-components.com/)
 - [The Meal DB API](https://www.themealdb.com/api.php)
-- [nanoID v. 3.1.16](https://www.npmjs.com/package/nanoid)
