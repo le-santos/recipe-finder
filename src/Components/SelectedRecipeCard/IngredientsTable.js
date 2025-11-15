@@ -19,9 +19,9 @@ function IngredientsTable(props) {
     item[0].includes("Ingredient")
   );
 
-  const ingredientsMeasures = Object.entries(
-    props.recipeSelected
-  ).filter((item) => item[0].includes("Measure"));
+  const ingredientsMeasures = Object.entries(props.recipeSelected).filter(
+    (item) => item[0].includes("Measure")
+  );
 
   //Filter truthy values in ingredients
   const makeTable = (ingr, measure) => {
