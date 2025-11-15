@@ -16,11 +16,11 @@ const TableStyled = styled.table`
 function IngredientsTable(props) {
   // Filter entries with key "Ingredient" or "Measure"
   const ingredients = Object.entries(props.recipeSelected).filter((item) =>
-    item[0].includes("Ingredient")
+    item[0].includes("Ingredient"),
   );
 
   const ingredientsMeasures = Object.entries(props.recipeSelected).filter(
-    (item) => item[0].includes("Measure")
+    (item) => item[0].includes("Measure"),
   );
 
   //Filter truthy values in ingredients
