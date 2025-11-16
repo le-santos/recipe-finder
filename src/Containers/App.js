@@ -6,6 +6,7 @@ import SearchBox from "../Components/SearchBox/SearchBox";
 import BackGroundHome from "../Components/UI/BackgroundHome";
 import ResultBox from "../Components/ResultBox/ResultBox";
 import { nanoid } from "nanoid";
+import { FavoriteProvider } from "../Context/FavoriteContext";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -86,17 +87,19 @@ function App() {
   );
 
   return (
-    <Layout className="App" searchByCategory={getCategoryRecipes}>
-      <SearchBox
-        value={inputValue}
-        onChange={handleInput}
-        clickSearch={getRecipes}
-        clickRandom={getRandomRecipes}
-        onKeyDown={handleKeyDown}
-      />
-      <BackGroundHome />
-      {isResultBoxOn}
-    </Layout>
+    <FavoriteProvider>
+      <Layout className="App" searchByCategory={getCategoryRecipes}>
+        <SearchBox
+          value={inputValue}
+          onChange={handleInput}
+          clickSearch={getRecipes}
+          clickRandom={getRandomRecipes}
+          onKeyDown={handleKeyDown}
+        />
+        <BackGroundHome />
+        {isResultBoxOn}
+      </Layout>
+    </FavoriteProvider>
   );
 }
 

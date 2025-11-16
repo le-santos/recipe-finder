@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Button from "../UI/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FavoriteContext } from "../../Context/FavoriteContext";
 
 const DivCard = styled.div`
   margin: 1em;
@@ -15,22 +16,13 @@ const DivCard = styled.div`
 `;
 
 function RecipeListCard({ id, src, alt, recipeName, selectCard }) {
-  const toggleFavorite = () => {
-    const newFavItem = { name: recipeName, id: id, src: src };
-    const storedFavorites = localStorage.getItem("favorites");
-    const storedRecipes = JSON.parse(storedFavorites)?.recipes || {};
+  const { toggleFavorite, isFavorite } = useContext(FavoriteContext);
 
-    if (Object.hasOwn(storedRecipes, newFavItem.id)) {
-      console.log("Removing from favorites");
-      delete storedRecipes[newFavItem.id];
-    } else {
-      console.log("Adding to favorites");
-      storedRecipes[newFavItem.id] = newFavItem;
-    }
-
-    const jsonFav = { recipes: storedRecipes };
-    localStorage.setItem("favorites", JSON.stringify(jsonFav));
+  const handleToggleFavorite = () => {
+    toggleFavorite(id, { name: recipeName, id: id, src: src });
   };
+
+  const favorited = isFavorite(id);
 
   return (
     <DivCard id={id}>
@@ -49,8 +41,9 @@ function RecipeListCard({ id, src, alt, recipeName, selectCard }) {
           icon={faHeart}
           color={"var(--color4)"}
           size={"lg"}
-          onClick={toggleFavorite}
+          onClick={handleToggleFavorite}
           style={{ cursor: "pointer", alignSelf: "center" }}
+          beat={favorited}
         />
       </div>
     </DivCard>
