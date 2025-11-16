@@ -15,16 +15,21 @@ const DivCard = styled.div`
 `;
 
 function RecipeListCard({ id, src, alt, recipeName, selectCard }) {
-  const addToFavorites = () => {
+  const toggleFavorite = () => {
     const newFavItem = { name: recipeName, id: id, src: src };
     const storedFavorites = localStorage.getItem("favorites");
     const storedRecipes = JSON.parse(storedFavorites)?.recipes || {};
 
-    storedRecipes[newFavItem.id] = newFavItem;
+    if (Object.hasOwn(storedRecipes, newFavItem.id)) {
+      console.log("Removing from favorites");
+      delete storedRecipes[newFavItem.id];
+    } else {
+      console.log("Adding to favorites");
+      storedRecipes[newFavItem.id] = newFavItem;
+    }
 
     const jsonFav = { recipes: storedRecipes };
     localStorage.setItem("favorites", JSON.stringify(jsonFav));
-    console.log("Added to favorites");
   };
 
   return (
@@ -44,7 +49,7 @@ function RecipeListCard({ id, src, alt, recipeName, selectCard }) {
           icon={faHeart}
           color={"var(--color4)"}
           size={"lg"}
-          onClick={addToFavorites}
+          onClick={toggleFavorite}
           style={{ cursor: "pointer", alignSelf: "center" }}
         />
       </div>
