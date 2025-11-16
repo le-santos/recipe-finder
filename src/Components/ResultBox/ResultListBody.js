@@ -18,7 +18,17 @@ const sadIcon = (
   <FontAwesomeIcon icon={faSadCry} size={"3x"} color={"var(--color5)"} />
 );
 
-function ResultBody({ recipeList, selectCard }) {
+function ResultBody({ recipeList, selectCard, isLoading }) {
+  if (isLoading) {
+    return (
+      <DivResultList>
+        <div style={{ margin: "2em", textAlign: "center", width: "100%" }}>
+          <h2>Loading recipes...</h2>
+        </div>
+      </DivResultList>
+    );
+  }
+
   let results =
     recipeList.length > 0 ? (
       recipeList.map(({ idMeal, strMealThumb, strMeal }) => (

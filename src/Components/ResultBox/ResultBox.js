@@ -23,6 +23,8 @@ const DivStyled = styled.div`
 
 function ResultBox(props) {
   const fetchRecipes = async () => {
+    props.setIsLoading(true);
+
     const meals = await fetchRecipesAPI(
       props.searchText,
       props.apiRequestMethod,
@@ -31,12 +33,15 @@ function ResultBox(props) {
 
     if (meals === null) {
       props.setRecipeList([]);
+      props.setIsLoading(false);
       return;
     }
 
     props.apiRequestMethod === "byId"
       ? props.setRecipeDetails(...meals)
       : props.setRecipeList([...meals]);
+
+    props.setIsLoading(false);
   };
 
   useEffect(() => {

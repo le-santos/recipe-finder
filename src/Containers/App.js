@@ -10,13 +10,13 @@ import { FavoriteProvider } from "../Context/FavoriteContext";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [resultVisibility, setResultVisibility] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [requestMethod, setRequestMethod] = useState("");
   const [searchId, setSearchId] = useState("");
   const [recipeList, setRecipeList] = useState([]);
   const [selectedCardId, setSelectedCardId] = useState(null);
   const [recipeDetails, setRecipeDetails] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInput = (e) => {
     let value = e.target.value;
@@ -28,7 +28,7 @@ function App() {
       setSearchId(nanoid(12));
       setSearchText(inputValue);
       setRequestMethod("search");
-      setResultVisibility(true);
+      setIsLoading(true);
     }
     setInputValue("");
   };
@@ -37,7 +37,7 @@ function App() {
     setSearchId(nanoid(12));
     setSearchText("");
     setRequestMethod("random");
-    setResultVisibility(true);
+    setIsLoading(true);
   };
 
   const handleKeyDown = (e) => {
@@ -50,7 +50,7 @@ function App() {
     setSearchId(nanoid(12));
     setSearchText(category);
     setRequestMethod("byCategory");
-    setResultVisibility(true);
+    setIsLoading(true);
   };
 
   const pickRecipe = (e) => {
@@ -58,18 +58,22 @@ function App() {
     setSelectedCardId(recipeCardKey);
     setRequestMethod("byId");
     setSearchId(nanoid(12));
+    setIsLoading(true);
   };
 
   const closeResult = () => {
-    setResultVisibility(false);
     setInputValue("");
     setSearchText("");
     setRequestMethod("");
     setRecipeList([]);
     setSearchId("");
+    setIsLoading(false);
   };
 
-  const isResultBoxOn = resultVisibility && (
+  const shouldShowResultBox =
+    requestMethod !== "" || recipeList.length > 0 || isLoading;
+
+  const isResultBoxOn = shouldShowResultBox && (
     <ResultBox
       searchText={searchText}
       apiRequestMethod={requestMethod}
@@ -80,9 +84,15 @@ function App() {
       setSelectedCardId={setSelectedCardId}
       recipeDetails={recipeDetails}
       setRecipeDetails={setRecipeDetails}
+      isLoading={isLoading}
+      setIsLoading={setIsLoading}
     >
       <ResultListHeader closeResult={closeResult} />
-      <ResultBody recipeList={recipeList} selectCard={pickRecipe} />
+      <ResultBody
+        recipeList={recipeList}
+        selectCard={pickRecipe}
+        isLoading={isLoading}
+      />
     </ResultBox>
   );
 
