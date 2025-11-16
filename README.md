@@ -38,6 +38,8 @@ npm start
 
 ```
 
+Your app will be running at http://localhost:3000.
+
 ### Running locally
 
 Download or clone this repository.
